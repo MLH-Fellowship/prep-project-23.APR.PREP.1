@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import GMaps from './Map' 
 
 function App() {
   const [error, setError] = useState(null);
@@ -47,6 +48,9 @@ function App() {
             <i><p>{results.name}, {results.sys.country}</p></i>
           </>}
         </div>
+      </div>
+      <div>
+        <GMaps/>
       </div>
     </>
   }
