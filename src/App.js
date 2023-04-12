@@ -52,10 +52,18 @@ function App() {
   }
 }
 
+
 function Day(day) {
+  const dayDate = new Date(day.dt * 1000).getDate();
+  const currDate = new Date(Date.now() * 1000).getDate();
   return (
     <>
-      <h3>{day.weather[0].main}</h3>
+      <h3>
+	{dayDate === currDate ? "Today" :
+	 dayDate === currDate+1 ? "Tomorrow" :
+	 dayDate}
+      </h3>
+      <h4>{day.weather[0].main}</h4>
       <p>Feels like {day.main.feels_like}°C</p>
     </>
   );
