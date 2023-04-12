@@ -40,16 +40,25 @@ function App() {
           value={city}
           onChange={event => setCity(event.target.value)} />
         <div className="Results">
-          {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
-          {isLoaded && results && <>
-	    {Day(results.list[0])}
-            <i><p>{results.city.name}, {results.city.country}</p></i>
-          </>}
+	  {Results(results, isLoaded)}
         </div>
       </div>
     </>
   }
+}
+
+
+function Results(results, isLoaded) {
+  return (
+    <>
+      {!isLoaded && <h2>Loading...</h2>}
+      {console.log(results)}
+      {isLoaded && results && <>
+	{Day(results.list[0])}
+	<i><p>{results.city.name}, {results.city.country}</p></i>
+      </>}
+    </>
+  );
 }
 
 
