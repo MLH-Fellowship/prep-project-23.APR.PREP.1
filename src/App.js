@@ -63,19 +63,25 @@ function Results(results, isLoaded) {
 
 
 function Day(day) {
-  const dayDate = new Date(day.dt * 1000).getDate();
-  const currDate = new Date(Date.now()).getDate();
+  const dayDate = new Date(day.dt * 1000);
+  const currDate = new Date(Date.now());
   return (
     <>
       <h3>
-	{dayDate === currDate ? "Today" :
-	 dayDate === currDate+1 ? "Tomorrow" :
-	 dayDate}
+	{dayDate.getDate() === currDate.getDate() ? "Today" :
+	 dayDate.getDate() === currDate.getDate()+1 ? "Tomorrow" :
+	 dayDate.getDate()}
       </h3>
+      <p>{dayDate.getHours()}:{padMinutes(dayDate.getMinutes())}</p>
       <h4>{day.weather[0].main}</h4>
       <p>Feels like {day.main.feels_like}°C</p>
     </>
   );
+}
+
+
+function padMinutes(min) {
+  return (min < 10 ? '0' : '') + min.toString()
 }
 
 export default App;
