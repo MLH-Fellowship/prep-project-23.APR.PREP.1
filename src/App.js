@@ -83,6 +83,9 @@ function Day(dayInfo) {
 }
 
 
+/* Take an array with the three-hourly weather forecast for five days
+   and return an array of arrays containing that same information
+   grouped by day */
 function regroupDaysInfo(dayInfoList) {
   const today = new Date(Date.now()).getDate();
   const regroupedInfo = [];
