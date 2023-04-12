@@ -38,9 +38,11 @@ function App() {
         <input
           type="text"
           value={city}
-          onChange={event => setCity(event.target.value)} />
-        <div className="Results">
-	  {Results(results, isLoaded)}
+    onChange={event => setCity(event.target.value)} />
+    <div className="Results">
+    {!isLoaded && <h2>Loading...</h2>}
+    {console.log(results)}
+    {isLoaded && results && Results(results, isLoaded)}
         </div>
       </div>
     </>
@@ -49,26 +51,21 @@ function App() {
 
 
 function Results(results, isLoaded) {
-  let days = [];
-  for (let i = 0; i < results.cnt; i += results.cnt / 5) {
-    days.push(results.list[i]);
-  }
+  let daysInfo = regroupDaysInfo(results.list);
   return (
     <>
-      {!isLoaded && <h2>Loading...</h2>}
-      {console.log(results)}
-      {isLoaded && results && <>
-	{days.map(function(day){
-	  return Day(day);
-	})}
+      {daysInfo.map(function(dayInfo){return Day(dayInfo);})}
 	<i><p>{results.city.name}, {results.city.country}</p></i>
-      </>}
     </>
   );
 }
 
 
-function Day(day) {
+function Day(dayInfo) {
+  // for now get just the first forecast in the dayInfo list,
+  // it will have to be updated to give the forecast for every hour
+  // that day
+  const day = dayInfo[0]; 
   const dayDate = new Date(day.dt * 1000);
   const currDate = new Date(Date.now());
   return (
@@ -83,6 +80,20 @@ function Day(day) {
       <p>Feels like {day.main.feels_like}°C</p>
     </>
   );
+}
+
+
+function regroupDaysInfo(dayInfoList) {
+  const today = new Date(Date.now()).getDate();
+  const regroupedInfo = [];
+  for (let i = today; i-today < 5; i++) {
+    const dayInfo = dayInfoList
+      .filter(
+	d => (new Date(d.dt * 1000).getDate()) === i
+      );
+    regroupedInfo.push(dayInfo);
+  }
+  return regroupedInfo;
 }
 
 
