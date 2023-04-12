@@ -49,12 +49,18 @@ function App() {
 
 
 function Results(results, isLoaded) {
+  let days = [];
+  for (let i = 0; i < results.cnt; i += results.cnt / 5) {
+    days.push(results.list[i]);
+  }
   return (
     <>
       {!isLoaded && <h2>Loading...</h2>}
       {console.log(results)}
       {isLoaded && results && <>
-	{Day(results.list[0])}
+	{days.map(function(day){
+	  return Day(day);
+	})}
 	<i><p>{results.city.name}, {results.city.country}</p></i>
       </>}
     </>
