@@ -9,11 +9,12 @@ function App() {
   const [results, setResults] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city
+	+ "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
-          if (result['cod'] !== 200) {
+          if (result['cod'] !== "200") {
             setIsLoaded(false)
           } else {
             setIsLoaded(true);
@@ -32,7 +33,7 @@ function App() {
   } else {
     return <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
+      <div>p
         <h2>Enter a city below 👇</h2>
         <input
           type="text"
@@ -42,9 +43,9 @@ function App() {
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
           {isLoaded && results && <>
-            <h3>{results.weather[0].main}</h3>
-            <p>Feels like {results.main.feels_like}°C</p>
-            <i><p>{results.name}, {results.sys.country}</p></i>
+            <h3>{results.list[0].weather[0].main}</h3>
+            <p>Feels like {results.list[0].main.feels_like}°C</p>
+            <i><p>{results.city.name}, {results.country}</p></i>
           </>}
         </div>
       </div>
