@@ -43,14 +43,22 @@ function App() {
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
           {isLoaded && results && <>
-            <h3>{results.list[0].weather[0].main}</h3>
-            <p>Feels like {results.list[0].main.feels_like}°C</p>
-            <i><p>{results.city.name}, {results.country}</p></i>
+	    {Day(results.list[0])}
+            <i><p>{results.city.name}, {results.city.country}</p></i>
           </>}
         </div>
       </div>
     </>
   }
+}
+
+function Day(day) {
+  return (
+    <>
+      <h3>{day.weather[0].main}</h3>
+      <p>Feels like {day.main.feels_like}°C</p>
+    </>
+  );
 }
 
 export default App;
