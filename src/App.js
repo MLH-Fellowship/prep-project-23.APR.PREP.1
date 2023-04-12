@@ -55,7 +55,7 @@ function App() {
 
 function Day(day) {
   const dayDate = new Date(day.dt * 1000).getDate();
-  const currDate = new Date(Date.now() * 1000).getDate();
+  const currDate = new Date(Date.now()).getDate();
   return (
     <>
       <h3>
