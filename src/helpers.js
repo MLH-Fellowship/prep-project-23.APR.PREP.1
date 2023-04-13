@@ -1,9 +1,4 @@
-export function dateToHourMinString(date) {
-  return padLeftTwo(date.getHours()) + ':' +
-	 padLeftTwo(date.getMinutes());
-}
-
-function padLeftTwo(min) {
+export function padLeftTwo(min) {
   return (min < 10 ? '0' : '') + min.toString();
 }
 
