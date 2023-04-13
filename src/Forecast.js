@@ -51,14 +51,14 @@ const Forecast = ({ city }) => {
 /* Take an array with the three-hourly weather forecast for five days
    and return an array of arrays containing that same information
    grouped by day */
-function regroupForecastResults(forecastResultsList) {
-  const today = new Date(Date.now()).getDate();
+function regroupForecastResults(forecastResultsArr) {
+  const firstDay = dtToDate(forecastResultsArr[0].dt).getDate();
   const regroupedResults = [];
-  for (let i = today; i - today < 5; i++) {
-    const dayInfo = forecastResultsList?.filter(
+  for (let i = firstDay; i - firstDay < 5; i++) {
+    const dayForecast = forecastResultsArr.filter(
       (d) => dtToDate(d.dt).getDate() === i
     );
-    regroupedResults.push(dayInfo);
+    regroupedResults.push(dayForecast);
   }
   return regroupedResults;
 }
