@@ -54,3 +54,7 @@
 .day__temp--min {
   color: #9097a0;
 }
+
+.day__hours {
+    display: none;
+}

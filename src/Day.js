@@ -32,7 +32,7 @@ const Day = ({ data }) => {
           <span className="day__temp--min">{Math.round(minTemp)}°</span>
         </p>
       </div>
-      <div className="day__hours">
+      <div className="day__hours" hidden="true">
 	{data.map((hourInfo, idx) => (
 	  <Hour key={idx} hour={hourInfo} />
 	))}

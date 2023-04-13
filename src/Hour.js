@@ -4,7 +4,7 @@ const Hour = ({ hour }) => {
   return (
     <>
       {/* hidden attribute should be set to false on click */}
-      <div className="hour" hidden="true">
+      <div className="hour">
 	<p className="hour__number">{dateToHourMinString(hour.date)}</p>
 	<p className="hour__data">
 	  <div className="hour__weather">{hour.weather[0].main}</div>
