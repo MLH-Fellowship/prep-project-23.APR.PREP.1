@@ -9,3 +9,7 @@ export function findMinMaxTemp(dayForecast) {
   
   return { minTemp, maxTemp };
 }
+
+export function dtToDate(dt) {
+  return new Date(dt * 1000);
+}

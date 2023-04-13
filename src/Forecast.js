@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Forecast.css';
 import Day from './Day';
+import { dtToDate } from './helpers';
 
 const Forecast = ({ city }) => {
   const [forecastError, setForecastError] = useState(null);
@@ -39,7 +40,7 @@ const Forecast = ({ city }) => {
     const regroupedInfo = [];
     for (let i = today; i - today < 5; i++) {
       const dayInfo = dayInfoList?.filter(
-        (d) => new Date(d.dt * 1000).getDate() === i
+        (d) => dtToDate(d.dt).getDate() === i
       );
       regroupedInfo.push(dayInfo);
     }
