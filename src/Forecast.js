@@ -32,21 +32,6 @@ const Forecast = ({ city }) => {
       );
   }, [city]);
 
-  /* Take an array with the three-hourly weather forecast for five days
-     and return an array of arrays containing that same information
-     grouped by day */
-  function regroupDaysInfo(dayInfoList) {
-    const today = new Date(Date.now()).getDate();
-    const regroupedInfo = [];
-    for (let i = today; i - today < 5; i++) {
-      const dayInfo = dayInfoList?.filter(
-        (d) => dtToDate(d.dt).getDate() === i
-      );
-      regroupedInfo.push(dayInfo);
-    }
-    return regroupedInfo;
-  }
-
   let daysInfo = regroupDaysInfo(forecastResults?.list);
 
   return (
@@ -63,5 +48,20 @@ const Forecast = ({ city }) => {
     </div>
   );
 };
+
+/* Take an array with the three-hourly weather forecast for five days
+   and return an array of arrays containing that same information
+   grouped by day */
+function regroupDaysInfo(dayInfoList) {
+  const today = new Date(Date.now()).getDate();
+  const regroupedInfo = [];
+  for (let i = today; i - today < 5; i++) {
+    const dayInfo = dayInfoList?.filter(
+      (d) => dtToDate(d.dt).getDate() === i
+    );
+    regroupedInfo.push(dayInfo);
+  }
+  return regroupedInfo;
+}
 
 export default Forecast;
