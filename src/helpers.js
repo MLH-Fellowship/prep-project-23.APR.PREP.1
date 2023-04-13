@@ -3,19 +3,9 @@ export function padMinutes(min) {
 }
 
 export function findMinMaxTemp(dayForecast) {
-  let minTemp = dayForecast[0].main.temp;
-  let maxTemp = dayForecast[0].main.temp;
-  dayForecast.forEach((threeHourBlock) => {
-    let temp = threeHourBlock.main.temp;
-
-    if (temp < minTemp) {
-      minTemp = temp;
-    }
-
-    if (temp > maxTemp) {
-      maxTemp = temp;
-    }
-  });
-
+  const temps = dayForecast.map(f => f.main.temp);
+  const minTemp = Math.min(...temps);
+  const maxTemp = Math.max(...temps);
+  
   return { minTemp, maxTemp };
 }
