@@ -1,7 +1,9 @@
 import './Day.css';
-import { padMinutes } from './helpers';
+import { findMinMaxTemp } from './helpers';
 
 const Day = ({ data }) => {
+  const { minTemp, maxTemp } = findMinMaxTemp(data);
+
   const day = data[0];
   const dayDate = new Date(day.dt * 1000);
   const currDate = new Date(Date.now());
@@ -29,17 +31,9 @@ const Day = ({ data }) => {
 
         <p className="day__condition">{dayWeather.description}</p>
 
-        {/* <p className="day__text--time">
-          {dayDate.getHours()}:{padMinutes(dayDate.getMinutes())}
-        </p> */}
-
         <p className="day__temp">
-          <span className="day__temp--max">
-            {Math.round(day.main.feels_like)}°
-          </span>
-          <span className="day__temp--min">
-            {Math.round(day.main.feels_like)}°
-          </span>
+          <span className="day__temp--max">{Math.round(maxTemp)}°</span>
+          <span className="day__temp--min">{Math.round(minTemp)}°</span>
         </p>
       </div>
     </div>
