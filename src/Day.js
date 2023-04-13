@@ -1,5 +1,5 @@
 import './Day.css';
-import Hour from './Hour.js'
+import DayModal from './DayModal';
 import { findMinMaxTemp, dayOfWeek } from './helpers';
 
 const Day = ({ data }) => {
@@ -32,11 +32,8 @@ const Day = ({ data }) => {
           <span className="day__temp--min">{Math.round(minTemp)}°</span>
         </p>
       </div>
-      <div className="day__hours">
-	{data.map((hourInfo, idx) => (
-	  <Hour key={idx} hour={hourInfo} />
-	))}
-      </div>
+
+      <DayModal data={data} />
     </div>
   );
 };
