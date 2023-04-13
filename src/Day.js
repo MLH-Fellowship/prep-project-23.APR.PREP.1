@@ -1,11 +1,8 @@
 import './Day.css';
 
-const Day = ({ data }) => {
-  console.log('data prop', data);
-  function padMinutes(min) {
-    return (min < 10 ? '0' : '') + min.toString();
-  }
+import { padMinutes } from './helpers';
 
+const Day = ({ data }) => {
   const day = data[0];
   const dayDate = new Date(day.dt * 1000);
   const currDate = new Date(Date.now());
