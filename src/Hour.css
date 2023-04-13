@@ -1,0 +1,12 @@
+.hour {
+  display: flex;
+}
+
+.hour__number {
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.hour__number--min {
+  font-size: smaller;
+}
