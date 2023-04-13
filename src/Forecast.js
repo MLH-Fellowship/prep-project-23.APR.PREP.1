@@ -53,14 +53,16 @@ const Forecast = ({ city }) => {
    grouped by day */
 function regroupForecastResults(forecastResultsArr) {
   const firstDay = dtToDate(forecastResultsArr[0].dt).getDate();
-  const regroupedResults = [];
+  const regroupedByDay = [];
+  forecastResultsArr.forEach((d) => d.date = dtToDate(d.dt));
   for (let i = firstDay; i - firstDay < 5; i++) {
-    const dayForecast = forecastResultsArr.filter(
-      (d) => dtToDate(d.dt).getDate() === i
+    let dayForecast = forecastResultsArr.filter(
+      (d) => d.date.getDate() === i
     );
-    regroupedResults.push(dayForecast);
+    regroupedByDay.push(dayForecast);
   }
-  return regroupedResults;
+  console.log(regroupedByDay);
+  return regroupedByDay;
 }
 
 export default Forecast;

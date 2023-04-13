@@ -1,16 +1,14 @@
 import './Day.css';
-import { findMinMaxTemp, dtToDate } from './helpers';
+import { findMinMaxTemp } from './helpers';
 
 const Day = ({ data }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
 
   const day = data[0];
-  const dayDate = dtToDate(day.dt);
   const currDate = new Date(Date.now());
-
   const dayWeather = day.weather[0];
   const dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][
-    dayDate.getDay()
+    day.date.getDay()
   ];
 
   return (
@@ -24,9 +22,9 @@ const Day = ({ data }) => {
 
       <div className="day__text">
         <p className="day__date">
-          {dayDate.getDate() === currDate.getDate()
+          {day.date.getDate() === currDate.getDate()
             ? 'Today'
-            : `${dayOfWeek} ${dayDate.getDate()}`}
+            : `${dayOfWeek} ${day.date.getDate()}`}
         </p>
 
         <p className="day__condition">{dayWeather.description}</p>
