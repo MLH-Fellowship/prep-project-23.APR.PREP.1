@@ -22,7 +22,8 @@ const Forecast = ({ city }) => {
             setForecastLoaded(false);
           } else {
             setForecastLoaded(true);
-            setForecastResults(result);
+	    const groupedForecast = regroupForecastResults(result.list);
+	    setForecastResults(groupedForecast);
           }
         },
         (error) => {
@@ -32,15 +33,13 @@ const Forecast = ({ city }) => {
       );
   }, [city]);
 
-  let daysInfo = regroupDaysInfo(forecastResults?.list);
-
   return (
     <div className="forecast">
       <h2 className="forecast__heading">5-Day Forecast</h2>
       {!forecastLoaded && <h2>Forecast loading...</h2>}
       {forecastLoaded && forecastResults && (
         <div className="forecast__cards">
-          {daysInfo.map((dayInfo, idx) => (
+          {forecastResults.map((dayInfo, idx) => (
             <Day key={idx} data={dayInfo} />
           ))}
         </div>
@@ -52,16 +51,16 @@ const Forecast = ({ city }) => {
 /* Take an array with the three-hourly weather forecast for five days
    and return an array of arrays containing that same information
    grouped by day */
-function regroupDaysInfo(dayInfoList) {
+function regroupForecastResults(forecastResultsList) {
   const today = new Date(Date.now()).getDate();
-  const regroupedInfo = [];
+  const regroupedResults = [];
   for (let i = today; i - today < 5; i++) {
-    const dayInfo = dayInfoList?.filter(
+    const dayInfo = forecastResultsList?.filter(
       (d) => dtToDate(d.dt).getDate() === i
     );
-    regroupedInfo.push(dayInfo);
+    regroupedResults.push(dayInfo);
   }
-  return regroupedInfo;
+  return regroupedResults;
 }
 
 export default Forecast;
