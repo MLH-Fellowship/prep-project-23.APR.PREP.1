@@ -13,3 +13,9 @@ export function findMinMaxTemp(dayForecast) {
 export function dtToDate(dt) {
   return new Date(dt * 1000);
 }
+
+export function dayOfWeek(date) {
+  return [
+    'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+  ][date.getDay()];
+}
