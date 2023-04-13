@@ -48,16 +48,14 @@ const Forecast = ({ city }) => {
 
   let daysInfo = regroupDaysInfo(forecastResults?.list);
 
-  console.log('forecastResults', forecastResults);
-  console.log('regroupDaysInfo', daysInfo);
-
   return (
     <div className="forecast">
+      <h2 className="forecast__heading">5-Day Forecast</h2>
       {!forecastLoaded && <h2>Forecast loading...</h2>}
       {forecastLoaded && forecastResults && (
-        <div>
-          {daysInfo.map((dayInfo) => (
-            <Day data={dayInfo} />
+        <div className="forecast__cards">
+          {daysInfo.map((dayInfo, idx) => (
+            <Day key={idx} data={dayInfo} />
           ))}
         </div>
       )}
