@@ -1,11 +1,11 @@
 import './Day.css';
-import { findMinMaxTemp } from './helpers';
+import { findMinMaxTemp, dtToDate } from './helpers';
 
 const Day = ({ data }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
 
   const day = data[0];
-  const dayDate = new Date(day.dt * 1000);
+  const dayDate = dtToDate(day.dt);
   const currDate = new Date(Date.now());
 
   const dayWeather = day.weather[0];
