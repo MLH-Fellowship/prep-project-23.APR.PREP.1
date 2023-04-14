@@ -30,8 +30,9 @@ const Forecast = ({ city }) => {
           } else {
             setForecastLoaded(true);
             const groupedForecast = regroupForecastResults(result.list);
-            setForecastResults(groupedForecast);
-            setForecastView(groupedForecast[0]); // set detailed view to first available day
+	    let days = groupedForecast.map(f => makeDay(f));
+            setForecastResults(days);
+            setForecastView(days[0]); // set detailed view to first available day
           }
         },
         (error) => {
@@ -49,10 +50,10 @@ const Forecast = ({ city }) => {
         <div>
           <div className="forecast__cards">
             {forecastResults.map((dayInfo, idx) => (
-              <Day handleChange={handleChangeView} key={idx} data={dayInfo} todayDate={todayDate} />
+              <Day handleChange={handleChangeView} key={idx} day={dayInfo} todayDate={todayDate} />
             ))}
           </div>
-          {forecastView && <DayView data={forecastView} todayDate={todayDate} />}
+          {forecastView && <DayView day={forecastView} todayDate={todayDate} />}
         </div>
       )}
     </div>
@@ -64,6 +65,7 @@ function makeDay(dayForecast) {
   const hours = [];
   dayForecast.forEach(h =>
     hours.push({
+      date: h.date,
       weather: h.weather[0],
       temp: {real: h.main.temp, feels: h.main.feels_like},
       wind: h.wind,
@@ -71,12 +73,14 @@ function makeDay(dayForecast) {
       pressure: h.main.pressure,
     })
   );
+  
   const weather = dominantWeather(hours);
-  return {
+  const day = {
     date: dayForecast[0].date,
     weather: weather,
     hours: hours,
   };
+  return day;
 }
 
 
@@ -141,11 +145,11 @@ function dominantWeather(hours) {
   const clear = ws.filter(w=> w.id === 800);     // clear
   const possibl = [overcast, broken, scattered, few, clear];
   
-  w = possibl.find(arr=> arr.length >= ws.length/2) ||
+  let wArr = possibl.find(arr=> arr.length >= ws.length/2) ||
       possibl.find(arr=> arr.length > 0) || false;
   
-  if (w) {
-    return w;
+  if (wArr) {
+    return wArr[0];
   } else {
     // should never happen if we have really checked for all
     // possible weathers in the API

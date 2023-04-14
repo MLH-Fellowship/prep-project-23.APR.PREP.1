@@ -1,18 +1,15 @@
 import './Day.css';
 import { findMinMaxTemp, DayName } from './helpers';
 
-const Day = ({ data, handleChange, todayDate }) => {
-  const { minTemp, maxTemp } = findMinMaxTemp(data);
-
-  const day = data[0];
-  const dayWeather = day.weather[0];
+const Day = ({ day, handleChange, todayDate }) => {
+  const { minTemp, maxTemp } = findMinMaxTemp(day);
 
   return (
-    <div onClick={() => handleChange(data)} className="day">
+    <div onClick={() => handleChange(day)} className="day">
       <div className="day__icon">
         <img
-          alt={dayWeather.description}
-          src={`https://openweathermap.org/img/wn/${dayWeather.icon}@2x.png`}
+          alt={day.weather.description}
+          src={`https://openweathermap.org/img/wn/${day.weather.icon}@2x.png`}
         />
       </div>
 
@@ -21,7 +18,7 @@ const Day = ({ data, handleChange, todayDate }) => {
 	  {DayName(day, todayDate)}
         </p>
 
-        <p className="day__condition">{dayWeather.description}</p>
+        <p className="day__condition">{day.weather.description}</p>
 
         <p className="day__temp">
           <span className="day__temp--max">{Math.round(maxTemp)}°</span>

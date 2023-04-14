@@ -2,8 +2,8 @@ export function padLeftTwo(min) {
   return (min < 10 ? '0' : '') + min.toString();
 }
 
-export function findMinMaxTemp(dayForecast) {
-  const temps = dayForecast.map(f => f.main.temp);
+export function findMinMaxTemp(day) {
+  const temps = day.hours.map(f => f.temp.real);
   const minTemp = Math.min(...temps);
   const maxTemp = Math.max(...temps);
   
