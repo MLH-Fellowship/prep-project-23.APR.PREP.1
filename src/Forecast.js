@@ -9,6 +9,7 @@ const Forecast = ({ city }) => {
   const [forecastLoaded, setForecastLoaded] = useState(false);
   const [forecastResults, setForecastResults] = useState(null);
   const [forecastView, setForecastView] = useState(null);
+  const todayDate = new Date(Date.now());
 
   const handleChangeView = (data) => {
     setForecastView(data);
@@ -48,10 +49,10 @@ const Forecast = ({ city }) => {
         <div>
           <div className="forecast__cards">
             {forecastResults.map((dayInfo, idx) => (
-              <Day handleChange={handleChangeView} key={idx} data={dayInfo} />
+              <Day handleChange={handleChangeView} key={idx} data={dayInfo} todayDate={todayDate} />
             ))}
           </div>
-          {forecastView && <DayView data={forecastView} />}
+          {forecastView && <DayView data={forecastView} todayDate={todayDate} />}
         </div>
       )}
     </div>

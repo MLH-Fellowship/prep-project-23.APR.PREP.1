@@ -1,8 +1,8 @@
 import './DayView.css';
 import { padLeftTwo, dayOfWeek } from './helpers';
 
-const DayView = ({ data }) => {
-  const day = data[0].date;
+const DayView = ({ data, todayDate }) => {
+  const day = data[0];
 
   const renderedHours = data.map((hourInfo, idx) => (
     <div key={idx} className="hour">
@@ -27,7 +27,7 @@ const DayView = ({ data }) => {
   return (
     <div className="view">
       <p className="view__heading">
-        {dayOfWeek(day)} {day.getDate()}
+        {dayOfWeek(day.date)} {day.date.getDate()}
       </p>
 
       <div className="view__hours">{renderedHours}</div>
