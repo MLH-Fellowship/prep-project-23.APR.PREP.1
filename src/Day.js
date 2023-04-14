@@ -1,5 +1,5 @@
 import './Day.css';
-import { findMinMaxTemp, DateDisplay } from './helpers';
+import { findMinMaxTemp, DayName } from './helpers';
 
 const Day = ({ data, handleChange, todayDate }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
@@ -18,7 +18,7 @@ const Day = ({ data, handleChange, todayDate }) => {
 
       <div className="day__text">
         <p className="day__date">
-	  {DateDisplay(day, todayDate)}
+	  {DayName(day, todayDate)}
         </p>
 
         <p className="day__condition">{dayWeather.description}</p>

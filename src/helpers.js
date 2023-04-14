@@ -20,8 +20,7 @@ export function dayOfWeek(date) {
   ][date.getDay()];
 }
 
-export function DateDisplay(day, todayDate) {
-  console.log(day.date.getDate());
+export function DayName(day, todayDate) {
   const date = day.date.getDate();
   const today = todayDate.getDate();
   return (
@@ -32,3 +31,4 @@ export function DateDisplay(day, todayDate) {
     </>
   );
 }
+

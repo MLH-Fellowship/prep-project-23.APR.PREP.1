@@ -1,9 +1,9 @@
 import './DayView.css';
-import { padLeftTwo, DateDisplay } from './helpers';
+import { padLeftTwo, DayName } from './helpers';
 
 const DayView = ({ data, todayDate }) => {
   const day = data[0];
-
+  console.log(data);
   const renderedHours = data.map((hourInfo, idx) => (
     <div key={idx} className="hour">
       <div className="hour__number">
@@ -27,7 +27,7 @@ const DayView = ({ data, todayDate }) => {
   return (
     <div className="view">
       <p className="view__heading">
-	{DateDisplay(day, todayDate)}
+	{DayName(day, todayDate)}
       </p>
 
       <div className="view__hours">{renderedHours}</div>
