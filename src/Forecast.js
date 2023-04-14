@@ -10,8 +10,8 @@ const Forecast = ({ city }) => {
   const [forecastResults, setForecastResults] = useState(null);
   const [forecastView, setForecastView] = useState(null);
 
-  const handleOpenView = (data) => {
-    forecastView === data ? setForecastView(null) : setForecastView(data); // if same card is clicked, close view. Otherwise, update view being shown
+  const handleChangeView = (data) => {
+    setForecastView(data);
   };
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const Forecast = ({ city }) => {
             setForecastLoaded(true);
             const groupedForecast = regroupForecastResults(result.list);
             setForecastResults(groupedForecast);
+            setForecastView(groupedForecast[0]); // set detailed view to first available day
           }
         },
         (error) => {
@@ -47,7 +48,7 @@ const Forecast = ({ city }) => {
         <div>
           <div className="forecast__cards">
             {forecastResults.map((dayInfo, idx) => (
-              <Day onClick={handleOpenView} key={idx} data={dayInfo} />
+              <Day onClick={handleChangeView} key={idx} data={dayInfo} />
             ))}
           </div>
           {forecastView && <DayView data={forecastView} />}
