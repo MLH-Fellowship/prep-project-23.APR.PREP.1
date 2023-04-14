@@ -60,6 +60,25 @@ const Forecast = ({ city }) => {
   );
 };
 
+/* Take an array with the three-hourly weather forecast for five days
+   and return an array of arrays containing that same information
+   grouped by day */
+function regroupForecastResults(forecastResultsArr) {
+  const firstDay = dtToDate(forecastResultsArr[0].dt).getDate();
+  const regroupedByDay = [];
+
+  forecastResultsArr.forEach((d) => (d.date = dtToDate(d.dt)));
+
+  for (let i = firstDay; i - firstDay < 5; i++) {
+    const dayForecast = forecastResultsArr.filter(
+      (d) => d.date.getDate() === i
+    );
+    regroupedByDay.push(dayForecast);
+  }
+
+  return regroupedByDay;
+}
+
 
 function makeDay(dayForecast) {
   const hours = [];
@@ -162,25 +181,5 @@ function dominantWeather(hours) {
   } 
 }
 
-
-
-/* Take an array with the three-hourly weather forecast for five days
-   and return an array of arrays containing that same information
-   grouped by day */
-function regroupForecastResults(forecastResultsArr) {
-  const firstDay = dtToDate(forecastResultsArr[0].dt).getDate();
-  const regroupedByDay = [];
-
-  forecastResultsArr.forEach((d) => (d.date = dtToDate(d.dt)));
-
-  for (let i = firstDay; i - firstDay < 5; i++) {
-    const dayForecast = forecastResultsArr.filter(
-      (d) => d.date.getDate() === i
-    );
-    regroupedByDay.push(dayForecast);
-  }
-
-  return regroupedByDay;
-}
 
 export default Forecast;
