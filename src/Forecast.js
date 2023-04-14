@@ -48,7 +48,7 @@ const Forecast = ({ city }) => {
         <div>
           <div className="forecast__cards">
             {forecastResults.map((dayInfo, idx) => (
-              <Day onClick={handleChangeView} key={idx} data={dayInfo} />
+              <Day handleChange={handleChangeView} key={idx} data={dayInfo} />
             ))}
           </div>
           {forecastView && <DayView data={forecastView} />}

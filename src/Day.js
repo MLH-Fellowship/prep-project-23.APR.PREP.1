@@ -1,7 +1,7 @@
 import './Day.css';
 import { findMinMaxTemp, dayOfWeek } from './helpers';
 
-const Day = ({ data, onClick }) => {
+const Day = ({ data, handleChange }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
 
   const day = data[0];
@@ -9,7 +9,7 @@ const Day = ({ data, onClick }) => {
   const dayWeather = day.weather[0];
 
   return (
-    <div onClick={() => onClick(data)} className="day">
+    <div onClick={() => handleChange(data)} className="day">
       <div className="day__icon">
         <img
           alt={dayWeather.description}
