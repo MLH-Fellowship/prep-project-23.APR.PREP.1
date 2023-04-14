@@ -1,5 +1,5 @@
 import './DayView.css';
-import { padLeftTwo, dayOfWeek } from './helpers';
+import { padLeftTwo, DateDisplay } from './helpers';
 
 const DayView = ({ data, todayDate }) => {
   const day = data[0];
@@ -27,7 +27,7 @@ const DayView = ({ data, todayDate }) => {
   return (
     <div className="view">
       <p className="view__heading">
-        {dayOfWeek(day.date)} {day.date.getDate()}
+	{DateDisplay(day, todayDate)}
       </p>
 
       <div className="view__hours">{renderedHours}</div>

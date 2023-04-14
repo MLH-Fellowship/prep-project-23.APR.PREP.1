@@ -1,5 +1,5 @@
 import './Day.css';
-import { findMinMaxTemp, dayOfWeek } from './helpers';
+import { findMinMaxTemp, DateDisplay } from './helpers';
 
 const Day = ({ data, handleChange, todayDate }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
@@ -18,9 +18,7 @@ const Day = ({ data, handleChange, todayDate }) => {
 
       <div className="day__text">
         <p className="day__date">
-          {day.date.getDate() === todayDate.getDate()
-            ? 'Today'
-            : `${dayOfWeek(day.date)} ${day.date.getDate()}`}
+	  {DateDisplay(day, todayDate)}
         </p>
 
         <p className="day__condition">{dayWeather.description}</p>

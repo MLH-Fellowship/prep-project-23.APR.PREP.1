@@ -19,3 +19,16 @@ export function dayOfWeek(date) {
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
   ][date.getDay()];
 }
+
+export function DateDisplay(day, todayDate) {
+  console.log(day.date.getDate());
+  const date = day.date.getDate();
+  const today = todayDate.getDate();
+  return (
+    <>
+      {date === today
+      ? 'Today'
+      : `${dayOfWeek(day.date)} ${day.date.getDate()}`}
+    </>
+  );
+}
