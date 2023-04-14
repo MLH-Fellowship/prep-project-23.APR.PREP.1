@@ -7,6 +7,11 @@ const Forecast = ({ city }) => {
   const [forecastError, setForecastError] = useState(null);
   const [forecastLoaded, setForecastLoaded] = useState(false);
   const [forecastResults, setForecastResults] = useState(null);
+  const [modalData, setModalData] = useState(null);
+
+  const handleOpenModal = (data) => {
+    setModalData(data); // if data is not null, modal will render
+  };
 
   useEffect(() => {
     fetch(
@@ -22,8 +27,8 @@ const Forecast = ({ city }) => {
             setForecastLoaded(false);
           } else {
             setForecastLoaded(true);
-	    const groupedForecast = regroupForecastResults(result.list);
-	    setForecastResults(groupedForecast);
+            const groupedForecast = regroupForecastResults(result.list);
+            setForecastResults(groupedForecast);
           }
         },
         (error) => {
@@ -38,10 +43,13 @@ const Forecast = ({ city }) => {
       <h2 className="forecast__heading">5-Day Forecast</h2>
       {!forecastLoaded && <h2>Forecast loading...</h2>}
       {forecastLoaded && forecastResults && (
-        <div className="forecast__cards">
-          {forecastResults.map((dayInfo, idx) => (
-            <Day key={idx} data={dayInfo} />
-          ))}
+        <div>
+          <div className="forecast__cards">
+            {forecastResults.map((dayInfo, idx) => (
+              <Day onClick={handleOpenModal} key={idx} data={dayInfo} />
+            ))}
+          </div>
+          {modalData && <p>place holder for modal of daily view</p>}
         </div>
       )}
     </div>
@@ -55,15 +63,15 @@ function regroupForecastResults(forecastResultsArr) {
   const firstDay = dtToDate(forecastResultsArr[0].dt).getDate();
   const regroupedByDay = [];
 
-  forecastResultsArr.forEach((d) => d.date = dtToDate(d.dt));
-  
+  forecastResultsArr.forEach((d) => (d.date = dtToDate(d.dt)));
+
   for (let i = firstDay; i - firstDay < 5; i++) {
     const dayForecast = forecastResultsArr.filter(
       (d) => d.date.getDate() === i
     );
     regroupedByDay.push(dayForecast);
   }
-  
+
   return regroupedByDay;
 }
 

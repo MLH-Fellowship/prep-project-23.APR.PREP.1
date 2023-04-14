@@ -1,8 +1,7 @@
 import './Day.css';
-import DayModal from './DayModal';
 import { findMinMaxTemp, dayOfWeek } from './helpers';
 
-const Day = ({ data }) => {
+const Day = ({ data, onClick }) => {
   const { minTemp, maxTemp } = findMinMaxTemp(data);
 
   const day = data[0];
@@ -10,7 +9,7 @@ const Day = ({ data }) => {
   const dayWeather = day.weather[0];
 
   return (
-    <div className="day">
+    <div onClick={() => onClick(data)} className="day">
       <div className="day__icon">
         <img
           alt={dayWeather.description}
@@ -32,8 +31,6 @@ const Day = ({ data }) => {
           <span className="day__temp--min">{Math.round(minTemp)}°</span>
         </p>
       </div>
-
-      <DayModal data={data} />
     </div>
   );
 };
