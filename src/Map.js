@@ -10,16 +10,14 @@ const containerStyle = {
 const center = { lat: -34.397, lng: 150.644 };
 const zoom = 4;
 
-function GMaps() {
+const GMaps = ({ setCood }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GMAPS
   })
 
   const [map, setMap] = React.useState(null)
-  const [cood, setCood] = React.useState({})
-  console.log(cood, "cood")
-
+  
   const onLoad = React.useCallback(function callback(map) {
     setMap(map)
   }, [])
@@ -37,7 +35,7 @@ function GMaps() {
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={(_) => {
-            setCood(JSON.parse(JSON.stringify(_.latLng)));
+            setCood(JSON.parse(JSON.stringify(_.latLng)))
         }}
   
       >
