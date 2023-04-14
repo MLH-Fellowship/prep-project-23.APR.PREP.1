@@ -1,4 +1,4 @@
-.modal {
+.view {
   display: flex;
   flex-direction: column;
   margin-top: 1.5rem;
@@ -9,13 +9,13 @@
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 }
 
-.modal__heading {
+.view__heading {
   font-size: 1.6rem;
   font-weight: bold;
   margin: 0 0 1.5rem;
 }
 
-.modal__hours {
+.view__hours {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: 1rem;

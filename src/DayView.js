@@ -1,7 +1,7 @@
-import './DayModal.css';
+import './DayView.css';
 import { padLeftTwo, dayOfWeek } from './helpers';
 
-const DayModal = ({ data }) => {
+const DayView = ({ data }) => {
   const day = data[0].date;
 
   const renderedHours = data.map((hourInfo, idx) => (
@@ -25,14 +25,14 @@ const DayModal = ({ data }) => {
   ));
 
   return (
-    <div className="modal">
-      <p className="modal__heading">
+    <div className="view">
+      <p className="view__heading">
         {dayOfWeek(day)} {day.getDate()}
       </p>
 
-      <div className="modal__hours">{renderedHours}</div>
+      <div className="view__hours">{renderedHours}</div>
     </div>
   );
 };
 
-export default DayModal;
+export default DayView;

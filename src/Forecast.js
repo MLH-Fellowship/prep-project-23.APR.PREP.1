@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import './Forecast.css';
 import Day from './Day';
-import DayModal from './DayModal';
+import DayView from './DayView';
 import { dtToDate } from './helpers';
 
 const Forecast = ({ city }) => {
   const [forecastError, setForecastError] = useState(null);
   const [forecastLoaded, setForecastLoaded] = useState(false);
   const [forecastResults, setForecastResults] = useState(null);
-  const [modalData, setModalData] = useState(null);
+  const [forecastView, setForecastView] = useState(null);
 
-  const handleOpenModal = (data) => {
-    modalData === data ? setModalData(null) : setModalData(data); // if same card is clicked, close view. Otherwise, update view being shown
+  const handleOpenView = (data) => {
+    forecastView === data ? setForecastView(null) : setForecastView(data); // if same card is clicked, close view. Otherwise, update view being shown
   };
 
   useEffect(() => {
@@ -47,10 +47,10 @@ const Forecast = ({ city }) => {
         <div>
           <div className="forecast__cards">
             {forecastResults.map((dayInfo, idx) => (
-              <Day onClick={handleOpenModal} key={idx} data={dayInfo} />
+              <Day onClick={handleOpenView} key={idx} data={dayInfo} />
             ))}
           </div>
-          {modalData && <DayModal data={modalData} />}
+          {forecastView && <DayView data={forecastView} />}
         </div>
       )}
     </div>
