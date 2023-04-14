@@ -1,0 +1,24 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  margin-top: 3rem;
+}
+
+.modal__heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.hour {
+  display: flex;
+}
+
+.hour__number {
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.hour__number--min {
+  font-size: smaller;
+}
