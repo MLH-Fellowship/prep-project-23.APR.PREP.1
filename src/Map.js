@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import './Map.css';
 
 const containerStyle = {
@@ -10,7 +10,7 @@ const containerStyle = {
 const center = { lat: -34.397, lng: 150.644 };
 const zoom = 4;
 
-const GMaps = ({ setCood }) => {
+const GMaps = ({ cood, setCood }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GMAPS
@@ -39,7 +39,9 @@ const GMaps = ({ setCood }) => {
         }}
   
       >
-        { /* Child components, such as markers, info windows, etc. */ }
+        <MarkerF
+          position={cood}
+        />
         <></>
       </GoogleMap>
     </div>

@@ -53,7 +53,8 @@ function App() {
       </div>
       <div>
         <GMaps
-          setCood={ setCood }
+          cood={cood}
+          setCood={setCood}
         />
       </div>
     </>
