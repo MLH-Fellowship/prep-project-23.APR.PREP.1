@@ -11,7 +11,7 @@ const Forecast = ({ city }) => {
   const [modalData, setModalData] = useState(null);
 
   const handleOpenModal = (data) => {
-    setModalData(data); // if data is not null, modal will render
+    modalData === data ? setModalData(null) : setModalData(data); // if same card is clicked, close view. Otherwise, update view being shown
   };
 
   useEffect(() => {
