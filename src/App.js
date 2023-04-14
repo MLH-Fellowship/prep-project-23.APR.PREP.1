@@ -8,6 +8,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [cood, setCood] = useState({})
+  console.log(cood, "COORDINATE STATE")
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
@@ -50,7 +52,9 @@ function App() {
         </div>
       </div>
       <div>
-        <GMaps/>
+        <GMaps
+          setCood={ setCood }
+        />
       </div>
     </>
   }
