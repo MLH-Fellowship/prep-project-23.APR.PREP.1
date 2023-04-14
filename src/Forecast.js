@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Forecast.css';
 import Day from './Day';
+import DayModal from './DayModal';
 import { dtToDate } from './helpers';
 
 const Forecast = ({ city }) => {
@@ -49,7 +50,7 @@ const Forecast = ({ city }) => {
               <Day onClick={handleOpenModal} key={idx} data={dayInfo} />
             ))}
           </div>
-          {modalData && <p>place holder for modal of daily view</p>}
+          {modalData && <DayModal data={modalData} />}
         </div>
       )}
     </div>
