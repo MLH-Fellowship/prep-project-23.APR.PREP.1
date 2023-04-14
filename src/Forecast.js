@@ -75,10 +75,15 @@ function makeDay(dayForecast) {
   );
   
   const weather = dominantWeather(hours);
+  const temps = hours.map(h => h.temp.real);
+  const minTemp = Math.min(...temps);
+  const maxTemp = Math.max(...temps);
+
   const day = {
     date: dayForecast[0].date,
     weather: weather,
     hours: hours,
+    temp: {min: minTemp, max: maxTemp},
   };
   return day;
 }
@@ -86,7 +91,7 @@ function makeDay(dayForecast) {
 
 function dominantWeather(hours) {
   const ws = hours.map(h => h.weather);
-  // extreme events
+  // from more extreme events to less
   let w = ws.find(w=> w.id === 781) || // tornado
 	  ws.find(w=> w.id === 504) || // extreme rain
 	  ws.find(w=> w.id === 212) || // heavy thunderstorm

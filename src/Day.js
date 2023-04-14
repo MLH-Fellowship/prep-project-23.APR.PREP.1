@@ -1,9 +1,7 @@
 import './Day.css';
-import { findMinMaxTemp, DayName } from './helpers';
+import { DayName } from './helpers';
 
 const Day = ({ day, handleChange, todayDate }) => {
-  const { minTemp, maxTemp } = findMinMaxTemp(day);
-
   return (
     <div onClick={() => handleChange(day)} className="day">
       <div className="day__icon">
@@ -21,8 +19,8 @@ const Day = ({ day, handleChange, todayDate }) => {
         <p className="day__condition">{day.weather.description}</p>
 
         <p className="day__temp">
-          <span className="day__temp--max">{Math.round(maxTemp)}°</span>
-          <span className="day__temp--min">{Math.round(minTemp)}°</span>
+          <span className="day__temp--max">{Math.round(day.temp.max)}°</span>
+          <span className="day__temp--min">{Math.round(day.temp.min)}°</span>
         </p>
       </div>
     </div>
