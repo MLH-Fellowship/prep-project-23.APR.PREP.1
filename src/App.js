@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import Essentials from "./essentials";
 
 function App() {
   const [error, setError] = useState(null);
@@ -48,7 +49,9 @@ function App() {
           </>}
         </div>
       </div>
+      <Essentials today={results?.weather[0]?.main}/> 
     </>
+
   }
 }
 
