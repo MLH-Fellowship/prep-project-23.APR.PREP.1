@@ -18,6 +18,7 @@ function App() {
           } else {
             setIsLoaded(true);
             setResults(result);
+            console.log(result)
           }
         },
         (error) => {
@@ -27,6 +28,9 @@ function App() {
       )
   }, [city])
 
+
+  // weather condition such as "clear", "rainy", "thunderstorm" is located in results.weather[0].main
+  // TODO: js that alters index.css file to match the weather condition current background color is #133667
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {

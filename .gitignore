@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+
+Note:
+// removed --openssl-legacy-provider from start so that I can run npm start
