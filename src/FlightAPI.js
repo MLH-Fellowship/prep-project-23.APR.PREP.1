@@ -1,0 +1,57 @@
+import React, { useState } from "react";
+import "./FlightAPI.css";
+
+function FlightPrices() {
+  const [source, setSource] = useState("");
+  const [destination, setDestination] = useState("");
+  const [outboundDate, setOutboundDate] = useState("");
+  const [inboundDate, setInboundDate] = useState("");
+  const [flightPrices, setFlightPrices] = useState([]);
+
+  const handleSearch = async () => {
+    //some API call
+  };
+
+  return (
+    <div className="flight-prices-container">
+      <h2>Get Flight Prices</h2>
+      <label>
+        Source:
+        <input
+          type="text"
+          value={source}
+          onChange={(e) => setSource(e.target.value)}
+        />
+      </label>
+      <label>
+        Destination:
+        <input
+          type="text"
+          value={destination}
+          onChange={(e) => setDestination(e.target.value)}
+        />
+      </label>
+      <label>
+        Outbound Date:
+        <input
+          type="date"
+          value={outboundDate}
+          onChange={(e) => setOutboundDate(e.target.value)}
+        />
+      </label>
+      <label>
+        Inbound Date:
+        <input
+          type="date"
+          value={inboundDate}
+          onChange={(e) => setInboundDate(e.target.value)}
+        />
+      </label>
+      <button onClick={handleSearch}>Search</button>
+
+      
+    </div>
+  );
+}
+
+export default FlightPrices;
