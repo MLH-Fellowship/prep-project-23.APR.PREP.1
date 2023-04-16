@@ -5,27 +5,35 @@ import logo from './mlh-prep.png'
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("New York City")
+  const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city
+	+ "&limit=5&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
+      .then(geo => geo[0])
       .then(
-        (result) => {
-          if (result['cod'] !== 200) {
-            setIsLoaded(false)
-          } else {
-            setIsLoaded(true);
-            setResults(result);
-            console.log(result)
-          }
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+	geo => {
+	  fetch("https://api.openweathermap.org/data/2.5/weather?lat=" +
+		geo['lat'] + "&lon=" + geo['lon'] + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
+	    .then(res => res.json())
+	    .then(
+              (result) => {
+		if (result['cod'] !== 200) {
+		  setIsLoaded(false)
+		} else {
+		  setIsLoaded(true);
+		  setResults(result);
+		}
+              },
+              (error) => {
+		setIsLoaded(true);
+		setError(error);
+              }
+	    )
+	}
+      );
   }, [city])
 
 
