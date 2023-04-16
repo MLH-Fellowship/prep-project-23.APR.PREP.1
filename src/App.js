@@ -44,13 +44,15 @@ function App() {
   } else {
     return <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
-        <h2>Enter a city below 👇</h2>
-        <input
-          type="text"
-          value={city}
-          onChange={event => setCity(event.target.value)} />
-        <div className="Results">
+      <div className="container">
+        <div className="header">
+          <h2>Enter a city below 👇</h2>
+          <input
+            type="text"
+            value={city}
+            onChange={event => setCity(event.target.value)} />
+        </div>
+        <div className="results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
           {isLoaded && results && <>
