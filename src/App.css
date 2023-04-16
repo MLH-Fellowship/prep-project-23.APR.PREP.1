@@ -2,6 +2,7 @@ body {
     background-color: #133667;
     color: white;
     text-align: center;
+    /* margin-left:100px ; */
 }
 
 .logo {
@@ -19,11 +20,19 @@ input {
   width: 200px
 }
 
+.weather_details {
+  display: flex;
+  /* align-items: center; */
+  margin-top: 5vh;
+  margin-left: 33.5vw;  
+}
 .Results {
+  text-align: center;
   background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
-  margin-top: 20px;
+  /* margin-left: 150px; */
+  margin-right: 0;
+  max-width: 40vw;
+  min-width: 30vw;
   border-radius: 8px;
   color: black;
   padding: 10px;

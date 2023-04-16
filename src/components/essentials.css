@@ -1,0 +1,27 @@
+.essentials {
+    max-height: 156px;
+    width: 150px;
+    background-color: transparent;
+    outline: white solid 1px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    /* padding: 1vh 1vw; */
+    align-items: center;
+    margin-left: 3vw;
+}
+
+.essentials p{
+    font-size: small;
+    margin-block: 0;
+    padding: 1vh 2vh;
+}
+.essentials h4{
+    color: #133667;
+    margin-block: 0;
+    padding: 1.5vh 2vh;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color:white ;
+
+}

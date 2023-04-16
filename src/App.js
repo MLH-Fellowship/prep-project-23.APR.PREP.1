@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
-import Essentials from "./essentials";
+import Essentials from "./components/essentials";
 
 function App() {
   const [error, setError] = useState(null);
@@ -33,12 +33,12 @@ function App() {
   } else {
     return <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
-        <h2>Enter a city below 👇</h2>
+      <h2>Enter a city below 👇</h2>
         <input
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
+      <div className="weather_details">
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
@@ -48,8 +48,8 @@ function App() {
             <i><p>{results.name}, {results.sys.country}</p></i>
           </>}
         </div>
+        <Essentials today={results?.weather[0]?.main}/> 
       </div>
-      <Essentials today={results?.weather[0]?.main}/> 
     </>
 
   }
