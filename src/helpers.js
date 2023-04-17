@@ -2,8 +2,8 @@ export function padLeftTwo(min) {
   return (min < 10 ? '0' : '') + min.toString();
 }
 
-export function dtToDate(dt) {
-  return new Date(dt * 1000);
+export function dtToDate(dt, timezone) {
+  return new Date((dt + timezone) * 1000);
 }
 
 export function dayOfWeek(date) {
