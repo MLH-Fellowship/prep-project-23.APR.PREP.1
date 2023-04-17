@@ -59,8 +59,8 @@ export default App;
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
-import AutoCity from "./autocity";
-import React, { Component }  from 'react';
+import AutoCity from "./AutoCity";
+import React  from 'react';
 
 function App() {
   const [error, setError] = useState(null);
@@ -75,7 +75,8 @@ function App() {
   useEffect(() => {
     if (city) {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        //`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY
       )
         .then((res) => res.json())
         .then(
