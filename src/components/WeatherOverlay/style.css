@@ -1,0 +1,8 @@
+.weather-overlay {
+    height: 9rem;
+    margin-top: 0rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    /* animation: sizeChanger 10s ease-in 0s infinite; */
+}
