@@ -14,7 +14,6 @@ const weatherConditions={
 
   return (
     <div className='essentials'>
-      <h4>Essentials</h4>
       <p><i>{weatherConditions[props.today] || "n/a"}</i></p>
     </div>
   );

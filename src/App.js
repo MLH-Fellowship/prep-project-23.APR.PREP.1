@@ -33,12 +33,12 @@ function App() {
   } else {
     return <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <h2>Enter a city below 👇</h2>
+      <div>
+        <h2>Enter a city below 👇</h2>
         <input
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-      <div className="weather_details">
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
@@ -51,7 +51,6 @@ function App() {
         <Essentials today={results?.weather[0]?.main}/> 
       </div>
     </>
-
   }
 }
 
