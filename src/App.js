@@ -2,12 +2,18 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 import WeatherOverlay from "./components/WeatherOverlay";
+import AutoCity from "./components/AutoCity";
+import React  from 'react';
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("New York City");
+  const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+
+  const handleSelect = (suggestion) => {
+    setCity(suggestion.name);
+  };
   const [containerStyle, setContainerStyle] = useState({
     backgroundColor: "#fff",
   });
@@ -87,18 +93,11 @@ function App() {
       <>
         <img className="logo" src={logo} alt="MLH Prep Logo"></img>
         <div className="container">
-          <div className="header">
-            <h2>Enter a city below 👇</h2>
-            <input
-              type="text"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
-          </div>
+          <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
+          <AutoCity onSelect={handleSelect} />
           <WeatherOverlay style={containerStyle} />
-          <div className="results">
+          <div className="Results">
             {!isLoaded && <h2>Loading...</h2>}
-            {console.log(results)}
             {isLoaded && results && (
               <>
                 <h3>{results.weather[0].main}</h3>
@@ -118,3 +117,4 @@ function App() {
 }
 
 export default App;
+
