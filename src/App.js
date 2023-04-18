@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 import AutoCity from "./components/AutoCity";
+import Forecast from './Forecast';
 import React  from 'react';
 import Essentials from "./components/essentials";
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -18,7 +20,6 @@ function App() {
   useEffect(() => {
     if (city) {
       fetch(
-        //`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
@@ -38,7 +39,6 @@ function App() {
         );
     }
   }, [city]);
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
