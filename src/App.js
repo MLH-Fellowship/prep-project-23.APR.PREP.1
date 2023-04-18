@@ -3,7 +3,9 @@ import "./App.css";
 import logo from "./mlh-prep.png";
 import WeatherOverlay from "./components/WeatherOverlay";
 import AutoCity from "./components/AutoCity";
+import Forecast from './Forecast';
 import React  from 'react';
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -19,39 +21,26 @@ function App() {
   });
 
   useEffect(() => {
-    fetch(
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      city +
-      "&limit=5&appid=" +
-      process.env.REACT_APP_APIKEY
-    )
-      .then((res) => res.json())
-      .then((geo) => geo[0])
-      .then((geo) => {
-        fetch(
-          "https://api.openweathermap.org/data/2.5/weather?lat=" +
-          geo["lat"] +
-          "&lon=" +
-          geo["lon"] +
-          "&units=metric&appid=" +
-          process.env.REACT_APP_APIKEY
-        )
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              if (result["cod"] !== 200) {
-                setIsLoaded(false);
-              } else {
-                setIsLoaded(true);
-                setResults(result);
-              }
-            },
-            (error) => {
+    if (city) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            if (result["cod"] !== 200) {
+              setIsLoaded(false);
+            } else {
               setIsLoaded(true);
-              setError(error);
+              setResults(result);
             }
-          );
-      });
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
   }, [city]);
 
   useEffect(() => {
@@ -88,13 +77,14 @@ function App() {
                 <h3>{results.weather[0].main}</h3>
                 <p>Feels like {results.main.feels_like}°C</p>
                 <i>
-                  <p>
-                    {results.name}, {results.sys.country}
-                  </p>
+		  <p>
+		    {results.name}, {results.sys.country}
+		  </p>
                 </i>
-              </>
-            )}
-          </div>
+		<Forecast city={city} />
+	      </>
+	    )}
+	  </div>
         </div>
       </>
     );
