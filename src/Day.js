@@ -1,3 +1,4 @@
+import React from 'react';
 import './Day.css';
 import { DayName } from './helpers';
 

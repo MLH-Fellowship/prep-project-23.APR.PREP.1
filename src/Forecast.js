@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import React  from 'react';
 import './Forecast.css';
 import Day from './Day';
 import DayView from './DayView';

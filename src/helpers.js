@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function padLeftTwo(min) {
   return (min < 10 ? '0' : '') + min.toString();
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import './DayView.css';
 import { padLeftTwo, DayName } from './helpers';
 
