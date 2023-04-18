@@ -2,50 +2,45 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 import WeatherOverlay from "./components/WeatherOverlay";
+import AutoCity from "./components/AutoCity";
+import Forecast from './Forecast';
+import React  from 'react';
+
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("New York City");
+  const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+
+  const handleSelect = (suggestion) => {
+    setCity(suggestion.name);
+  };
   const [containerStyle, setContainerStyle] = useState({
     backgroundColor: "#fff",
   });
 
   useEffect(() => {
-    fetch(
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      city +
-      "&limit=5&appid=" +
-      process.env.REACT_APP_APIKEY
-    )
-      .then((res) => res.json())
-      .then((geo) => geo[0])
-      .then((geo) => {
-        fetch(
-          "https://api.openweathermap.org/data/2.5/weather?lat=" +
-          geo["lat"] +
-          "&lon=" +
-          geo["lon"] +
-          "&units=metric&appid=" +
-          process.env.REACT_APP_APIKEY
-        )
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              if (result["cod"] !== 200) {
-                setIsLoaded(false);
-              } else {
-                setIsLoaded(true);
-                setResults(result);
-              }
-            },
-            (error) => {
+    if (city) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            if (result["cod"] !== 200) {
+              setIsLoaded(false);
+            } else {
               setIsLoaded(true);
-              setError(error);
+              setResults(result);
             }
-          );
-      });
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
   }, [city]);
 
   useEffect(() => {
@@ -72,32 +67,24 @@ function App() {
       <>
         <img className="logo" src={logo} alt="MLH Prep Logo"></img>
         <div className="container">
-          <div className="header">
-            <h2>Enter a city below 👇</h2>
-            <input
-              type="text"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
-          </div>
-
+          <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
+          <AutoCity onSelect={handleSelect} />
           <WeatherOverlay style={containerStyle} />
-
-          <div className="results">
+          <div className="Results">
             {!isLoaded && <h2>Loading...</h2>}
-            {console.log(results)}
             {isLoaded && results && (
               <>
                 <h3>{results.weather[0].main}</h3>
                 <p>Feels like {results.main.feels_like}°C</p>
                 <i>
-                  <p>
-                    {results.name}, {results.sys.country}
-                  </p>
+		  <p>
+		    {results.name}, {results.sys.country}
+		  </p>
                 </i>
-              </>
-            )}
-          </div>
+		<Forecast city={city} />
+	      </>
+	    )}
+	  </div>
         </div>
       </>
     );
@@ -105,3 +92,4 @@ function App() {
 }
 
 export default App;
+
