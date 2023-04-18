@@ -13,7 +13,8 @@ function FlightAPI() {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_SKYSCANNER_API_KEY,
+        //   'X-RapidAPI-Key': "4e3724feb0msh5b47c38c57cb0f1p1f5cf2jsn306809e8e4c0",
+          'X-RapidAPI-Key': `${process.env.REACT_APP_SKYSCANNER_API_KEY}`,
           'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }
       };
