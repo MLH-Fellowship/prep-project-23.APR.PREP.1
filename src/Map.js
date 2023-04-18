@@ -7,7 +7,6 @@ const containerStyle = {
   height: '500px'
 };
 
-const center = { lat: -34.397, lng: 150.644 };
 const zoom = 4;
 
 const GMaps = ({ cood, setCood }) => {
@@ -30,7 +29,7 @@ const GMaps = ({ cood, setCood }) => {
     <div className="gmaps">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={cood}
         zoom={zoom}
         onLoad={onLoad}
         onUnmount={onUnmount}

@@ -8,9 +8,21 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
-  const [cood, setCood] = useState({})
+  const [cood, setCood] = useState({lat: 40.7127753, lng: -74.0059728})
   console.log(cood, "COORDINATE STATE")
 
+  function getCityLocation(city) {
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GMAPS}`)
+      .then((response) => {
+          return response.json();
+      }).then(jsonData => {
+        setCood(jsonData.results[0].geometry.location); 
+      })
+      .catch(error => {
+          console.log(error);
+      });
+  }
+  
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
@@ -41,6 +53,9 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
+        <text
+          onClick={()=>getCityLocation(city)}
+        >🔍</text>
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
