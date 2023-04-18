@@ -64,20 +64,6 @@ function App() {
     return { backgroundImage: `url(/assets/weather-icons/${weather}.svg)` };
   }
 
-  /*
-  case "Clear":
-    TODO
-  case "Atmosphere":
-    TODO
-  case "Snow":
-    TODO
-  case "Drizzle":
-    TODO
-  case "Thunderstorm":
-    TODO
-  */
-
-
   /* TODO: Adjust overlay based on temperature
   //const temperature = results.main.temp / 10
   const style = {
@@ -85,7 +71,6 @@ function App() {
   };
   */
 
-  // weather condition such as "clear", "rainy", "thunderstorm" is located in results.weather[0].main
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
