@@ -59,6 +59,7 @@ function App() {
                     {results.name}, {results.sys.country}
                   </p>
                 </i>
+                <Forecast city={city} />
               </>
             )}
           </div>
