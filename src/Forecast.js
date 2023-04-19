@@ -26,7 +26,6 @@ const Forecast = ({ city }) => {
       .then((res) => res.json())
       .then(
         (result) => {
-	  console.log(result);
           if (result['cod'] !== '200') {
             setForecastLoaded(false);
           } else {
