@@ -53,13 +53,6 @@ function App() {
     return { backgroundImage: `url(/assets/weather-icons/${weather}.svg)` };
   }
 
-  /* TODO: Adjust overlay based on temperature
-  //const temperature = results.main.temp / 10
-  const style = {
-    background: `linear-gradient(rgba(0,0,0,${temperature}), rgba(0,0,0,${temperature}))`
-  };
-  */
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
@@ -93,3 +86,9 @@ function App() {
 
 export default App;
 
+/* TODO: Adjust overlay based on temperature
+//const temperature = results.main.temp / 10
+const style = {
+  background: `linear-gradient(rgba(0,0,0,${temperature}), rgba(0,0,0,${temperature}))`
+};
+*/
