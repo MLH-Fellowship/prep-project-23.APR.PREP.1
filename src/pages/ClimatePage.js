@@ -3,6 +3,8 @@ import AirQuality from '../components/climate/AirQuality';
 import AutoCity from '../components/AutoCity';
 
 const ClimatePage = () => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [climatePageCity, setClimatePageCity] = useState('');
   const [coordinates, setCoordinates] = useState([]);
 
@@ -18,11 +20,17 @@ const ClimatePage = () => {
         .then((res) => res.json())
         .then(
           (result) => {
-            setCoordinates(result.coord);
-            // you can set another piece of state for whatever you need to pass down to the HistoricalData component
+            if (result['cod'] !== 200) {
+              setIsLoaded(false);
+            } else {
+              setIsLoaded(true);
+              setCoordinates(result.coord);
+              // you can set another piece of state for whatever you need to pass down to the HistoricalData component
+            }
           },
           (error) => {
-            console.log(error);
+            setIsLoaded(true);
+            setError(error);
           }
         );
     }
@@ -30,9 +38,22 @@ const ClimatePage = () => {
 
   return (
     <div>
+      <h1>Climate Change</h1>
+      <p>
+        Enter a city to learn more about how global warming has affected its
+        climate over the past decades. View live data of the air quality.
+      </p>
+      <h2>Enter a city below 👇</h2>
       <AutoCity onSelect={handleSelect} />
-      {/* historical data component can go here */}
-      <AirQuality coordinates={coordinates} />
+
+      {error && <div>Error: {error.message}</div>}
+
+      {isLoaded && coordinates && (
+        <div>
+          {/* historical data component can go here */}
+          <AirQuality coordinates={coordinates} />
+        </div>
+      )}
     </div>
   );
 };
