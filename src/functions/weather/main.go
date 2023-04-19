@@ -15,7 +15,10 @@ func handleError(code int, err error) (*events.APIGatewayProxyResponse, error) {
 	log.Println(err.Error())
 	return &events.APIGatewayProxyResponse{
 		StatusCode: code,
-		Body:       err.Error(),
+		Headers: map[string]string{
+			"Access-Control-Allow-Origin": "*",
+		},
+		Body: err.Error(),
 	}, err
 }
 
@@ -40,8 +43,11 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	return &events.APIGatewayProxyResponse{
 		StatusCode: resp.StatusCode,
-		Headers:    map[string]string{"Content-Type": "application/json"},
-		Body:       string(strResp),
+		Headers: map[string]string{
+			"Content-Type":                "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+		Body: string(strResp),
 	}, nil
 }
 

@@ -12,20 +12,21 @@ const Forecast = ({ city }) => {
   const [forecastView, setForecastView] = useState(null);
   const todayDate = new Date(Date.now());
 
+  const basename = process.env.NODE_ENV === "development" ?
+		   'http://0.0.0.0:8888' :
+		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+  const uri = basename + '/api/forecast?q=' + city 
+  
   const handleChangeView = (data) => {
     setForecastView(data);
   };
 
   useEffect(() => {
-    fetch(
-      'https://api.openweathermap.org/data/2.5/forecast?q=' +
-        city +
-        '&units=metric&appid=' +
-        process.env.REACT_APP_APIKEY
-    )
+    fetch(uri)
       .then((res) => res.json())
       .then(
         (result) => {
+	  console.log(result);
           if (result['cod'] !== '200') {
             setForecastLoaded(false);
           } else {

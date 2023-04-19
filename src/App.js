@@ -12,15 +12,18 @@ function App() {
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
 
+  const basename = process.env.NODE_ENV === "development" ?
+		   'http://0.0.0.0:8888' :
+		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+  const uri = basename + '/api/weather?q=' + city 
+  
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
   };
 
   useEffect(() => {
     if (city) {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
-      )
+      fetch(uri)
         .then((res) => res.json())
         .then(
           (result) => {
