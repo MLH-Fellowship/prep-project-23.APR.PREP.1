@@ -2,6 +2,7 @@ import React from "react";
 import App from "./App";
 import "./Navbar.css"
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "./day-trip";
 
 function Navbar() {
   return (
@@ -28,6 +29,7 @@ function Navbar() {
         </nav>
         <Routes>
         <Route exact path="/" component={App} />
+        <Route path="/day-trip" component={App} />
         <Route path="/climate-change" component={App} />
         <Route path="/trip-planner" component={App} />
         <Route path="/about-us" component={App} />
