@@ -18,7 +18,8 @@ function FlightAPI() {
         }
       };
   
-      const response = await fetch(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=SI&origin=MUC&departureDate=2023-07-01&returnDate=2023-07-21&currency=EUR&locale=en-GB&country=UK`, options);
+      const response = await fetch(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${source}&departureDate=2023-07-01&returnDate=2023-07-21&currency=INR&locale=en-GB&country=IN`, options);
+      console.log(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${origin}&departureDate=${outboundDate}&returnDate=${inboundDate}&currency=INR&locale=en-GB&country=IN`)
       const data = await response.json();
       console.log(data)
       setFlightPrices(data);
@@ -31,36 +32,39 @@ function FlightAPI() {
   return (
     <div className="flight-prices-container">
       <h2>Get Flight Prices</h2>
-      <label>
-        Source:
-        <input
-          type="text"
-          value={source}
-          onChange={(e) => setSource(e.target.value)}
-        />
+      <label> Select Airport-
+        <select value={source} onChange={(e) => setSource(e.target.value)}>
+            <option value="">Select Source</option>
+            <option value="AUH">Abu Dhabi</option>
+            <option value="LHR">London</option>
+            <option value="JFK">New York</option>
+            <option value="SYD">Sydney</option>
+        </select>
       </label>
       <label>
         Destination:
-        <input
-          type="text"
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-        />
+        <select value={destination} onChange={(e) => setDestination(e.target.value)}>
+            <option value="">Select Destination</option>
+            <option value="IN">India</option>
+            <option value="US">USA</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+        </select>
       </label>
       <label>
         Outbound Date:
         <input
-          type="date"
-          value={outboundDate}
-          onChange={(e) => setOutboundDate(e.target.value)}
+            type="date"
+            value={outboundDate}
+            onChange={(e) => setOutboundDate(e.target.value.split('T')[0])}
         />
       </label>
       <label>
         Inbound Date:
         <input
-          type="date"
-          value={inboundDate}
-          onChange={(e) => setInboundDate(e.target.value)}
+            type="date"
+            value={inboundDate}
+            onChange={(e) => setInboundDate(e.target.value.split('T')[0])}
         />
       </label>
       <button onClick={handleSearch}>Search</button>
@@ -76,16 +80,17 @@ function FlightAPI() {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(flightPrices) && flightPrices.map((flightPrice) => (
-            <tr key={flightPrice.Id}>
-              <td>{flightPrice[0].Name}</td>
-              <td>{flightPrice[0].CountryName}</td>
-              <td>{flightPrice[0].DirectPrice}</td>
-              <td>{flightPrice[0].IndirectPrice}</td>
-              <td>{flightPrice[0].HotelPrice}</td>
-            </tr>
-          ))}
-        </tbody>
+  {Array.isArray(flightPrices.PlacePrices) &&
+    flightPrices.PlacePrices.map((flightPrice) => (
+      <tr key={flightPrice.Id}>
+        <td>{flightPrice.Name}</td>
+        <td>{flightPrice.CountryName}</td>
+        <td>{flightPrice.DirectPrice}</td>
+        <td>{flightPrice.IndirectPrice}</td>
+        <td>{flightPrice.HotelPrice}</td>
+      </tr>
+    ))}
+</tbody>
       </table>
     </div>
   );
