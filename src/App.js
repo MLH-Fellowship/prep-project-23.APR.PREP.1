@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 import AutoCity from "./components/AutoCity";
-import React from 'react';
+import Forecast from './Forecast';
+import React  from 'react';
 
 function App() {
   const [error, setError] = useState(null);
@@ -36,7 +37,6 @@ function App() {
         );
     }
   }, [city]);
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
@@ -50,11 +50,12 @@ function App() {
         <div className="results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
-          {isLoaded && results && <>
+          {isLoaded && results && (<>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
             <i><p>{results.name}, {results.sys.country}</p></i>
-          </>}
+            <Forecast city={city} />
+          </>)}
         </div>
       </div>
     </>
