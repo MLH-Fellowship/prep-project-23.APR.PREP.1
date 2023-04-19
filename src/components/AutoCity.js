@@ -8,11 +8,16 @@ function AutoCity({ onSelect }) {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(false); // new state variable
 
+  const basename = process.env.NODE_ENV === "development" ?
+		   'http://0.0.0.0:8888' :
+		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+
   useEffect(() => {
     if (inputValue.length > 2 && !selected) { // only fetch if not selected
+      const uri = basename + '/api/openweather?kind=geo&q=' + inputValue +
+		  "&limit=5";
       setLoading(true);
-      fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${process.env.REACT_APP_APIKEY}`)
-      //fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+      fetch(uri)
         .then((res) => res.json())
         .then(
           (result) => {
