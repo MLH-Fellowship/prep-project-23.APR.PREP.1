@@ -13,6 +13,9 @@ function Navbar() {
               <Link to="/">Home</Link>
             </li>
             <li>
+              <Link to="/day-trip">Day Trip</Link>
+            </li>
+            <li>
               <Link to="/trip-planner">Trip Planner</Link>
             </li>
             <li>
