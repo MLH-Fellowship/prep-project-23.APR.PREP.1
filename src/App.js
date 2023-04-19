@@ -6,7 +6,6 @@ import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
 
-
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -60,24 +59,22 @@ function App() {
       <>
         <img className="logo" src={logo} alt="MLH Prep Logo"></img>
         <div className="container">
-          <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
-          <AutoCity onSelect={handleSelect} />
+          <div className="header">
+            <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
+            <AutoCity onSelect={handleSelect} />
+          </div>
           <WeatherOverlay style={containerStyle} />
-          <div className="Results">
+          <div className="results">
             {!isLoaded && <h2>Loading...</h2>}
+            {console.log(results)}
             {isLoaded && results && (
-              <>
-                <h3>{results.weather[0].main}</h3>
-                <p>Feels like {results.main.feels_like}°C</p>
-                <i>
-		  <p>
-		    {results.name}, {results.sys.country}
-		  </p>
-                </i>
-		<Forecast city={city} />
-	      </>
-	    )}
-	  </div>
+            <>
+              <h3>{results.weather[0].main}</h3>
+              <p>Feels like {results.main.feels_like}°C</p>
+              <i><p>{results.name}, {results.sys.country}</p></i>
+              <Forecast city={city} />
+            </>)}
+          </div>
         </div>
       </>
     );
