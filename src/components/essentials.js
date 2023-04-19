@@ -9,7 +9,9 @@ const weatherConditions={
       Snow:'Bundle up for the snowy weather! Wear a warm coat, hat, and gloves to stay warm ❄️ ',
       Thunderstorm:'Stay indoors and avoid going outside until the storm passes ⚡',
       Drizzle:"Ensure you stay dry by bringing along an umbrella and a waterproof jacket or raincoat🌧️ ",
-      Mist:"Consider bringing an umbrella and a waterproof jacket or a raincoat to stay dry 🌫️ "
+      Mist:"Consider bringing an umbrella and a waterproof jacket or a raincoat to stay dry 🌫️ ",
+      Haze:"Bring along essentials such as N95 masks, eye protection and monitor the air quality 💨",
+      Dust:"Prepare for dusty weather by carrying goggles, face masks or respirators."
     }
 
   return (
