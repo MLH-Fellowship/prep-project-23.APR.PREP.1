@@ -7,7 +7,6 @@ import {
   Tooltip,
   Legend,
   Bar,
-  Line,
 } from 'recharts';
 
 const AirQuality = ({ coordinates }) => {
@@ -60,14 +59,21 @@ const AirQuality = ({ coordinates }) => {
       {results && (
         <div>
           <p>Air Quality Index: {airQualityIndex}</p>
-          <BarChart width={730} height={300} data={results}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="value" fill="#8884d8" />
-          </BarChart>
+
+          <div className="air__chart">
+            <BarChart width={730} height={300} data={results}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar
+                dataKey="value"
+                name="concentration (μg/m^3)"
+                fill="#8884d8"
+              />
+            </BarChart>
+          </div>
         </div>
       )}
     </div>
