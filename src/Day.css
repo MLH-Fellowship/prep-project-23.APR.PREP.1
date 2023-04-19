@@ -1,0 +1,60 @@
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgray;
+  color: #333;
+  padding: 0.5rem 2rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.day:hover {
+  cursor: pointer;
+}
+
+.day__icon {
+  width: 7rem;
+}
+
+.day__icon img {
+  width: 100%;
+  height: auto;
+}
+
+.day__text p {
+  margin: 0;
+}
+
+.day__text p:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+
+.day__date {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.day__condition {
+  font-size: 1.1rem;
+  color: #798086;
+}
+
+.day__temp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.day__temp--max {
+  font-weight: bold;
+  margin-right: 8px;
+  padding-right: 8px;
+  border-right: 2px solid #9097a0;
+}
+
+.day__temp--min {
+  color: #9097a0;
+}
