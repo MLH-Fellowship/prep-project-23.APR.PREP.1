@@ -1,15 +1,15 @@
 .essentials {
-    width: 55vw;
+    width: 50vw;
     color: white;
     text-align: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 1vh;
+    padding: 1vh 0 0 0;
 }
 
 .essentials p{
     font-size: 14px;
     margin-block: 0;
-    padding: 1vh 2vh;
+    padding: 1vh 0;
 }

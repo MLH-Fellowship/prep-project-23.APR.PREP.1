@@ -48,7 +48,7 @@ const Forecast = ({ city }) => {
 
   return (
     <div className="forecast">
-      <h2 className="forecast__heading">5-Day Forecast</h2>
+      <h3 className="forecast__heading">5-Day Forecast</h3>
       {!forecastLoaded && <h2>Forecast loading...</h2>}
       {forecastLoaded && forecastResults && (
         <div>
