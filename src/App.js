@@ -4,6 +4,7 @@ import logo from "./mlh-prep.png";
 import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
+import Essentials from "./components/essentials";
 
 function App() {
   const [error, setError] = useState(null);
@@ -58,6 +59,7 @@ function App() {
           </>)}
         </div>
       </div>
+      <Essentials today={results?.weather[0].main}/>
     </>
   }
 }
