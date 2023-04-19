@@ -32,7 +32,7 @@ function FlightAPI() {
   return (
     <div className="flight-prices-container">
       <h2>Get Flight Prices</h2>
-      <label> Select Airport-
+      <label> Select Airport   - 
         <select value={source} onChange={(e) => setSource(e.target.value)}>
             <option value="">Select Source</option>
             <option value="AUH">Abu Dhabi</option>
@@ -42,7 +42,7 @@ function FlightAPI() {
         </select>
       </label>
       <label>
-        Destination:
+        Destination   -
         <select value={destination} onChange={(e) => setDestination(e.target.value)}>
             <option value="">Select Destination</option>
             <option value="IN">India</option>
@@ -52,7 +52,7 @@ function FlightAPI() {
         </select>
       </label>
       <label>
-        Outbound Date:
+        Outbound Date   -
         <input
             type="date"
             value={outboundDate}
@@ -60,7 +60,7 @@ function FlightAPI() {
         />
       </label>
       <label>
-        Inbound Date:
+        Inbound Date   -
         <input
             type="date"
             value={inboundDate}
