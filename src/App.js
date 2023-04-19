@@ -15,7 +15,7 @@ function App() {
   const basename = process.env.NODE_ENV === "development" ?
 		   'http://0.0.0.0:8888' :
 		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
-  const uri = basename + '/api/weather?q=' + city 
+  const uri = basename + '/api/openweather?kind=weather&q=' + city 
   
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
