@@ -20,8 +20,6 @@ func handleError(code int, err error) (*events.APIGatewayProxyResponse, error) {
 }
 
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	fmt.Println(os.Getenv("CONTEXT"))
-	fmt.Println(os.Hostname())
 	uri := fmt.Sprintf(
 		"https://api.openweathermap.org/data/2.5/forecast?q=%s&units=metric&appid=%s",
 		request.QueryStringParameters["q"],
