@@ -2,6 +2,8 @@ import React from "react";
 import App from "./App";
 import "./Navbar.css"
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import FlightAPI from "./FlightAPI";
+
 
 function Navbar() {
   return (
@@ -24,10 +26,10 @@ function Navbar() {
           </ul>
         </nav>
         <Routes>
-        <Route exact path="/" component={App} />
-        <Route path="/climate-change" component={App} />
-        <Route path="/trip-planner" component={App} />
-        <Route path="/about-us" component={App} />
+          <Route exact path="/" element={<App/>} />
+          <Route path="/climate-change" element={<App/>} />
+          <Route path="/trip-planner" element={<FlightAPI/>} />
+          <Route path="/about-us" element={<App/>} />
         </Routes>
       </div>
     </Router>

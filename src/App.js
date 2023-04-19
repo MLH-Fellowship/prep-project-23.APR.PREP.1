@@ -60,6 +60,7 @@ function App() {
         <Essentials today={results?.weather[0].main}/>
         <Forecast city={city} />
       </div>
+      <Essentials today={results?.weather[0].main}/>
     </>
   }
 }
