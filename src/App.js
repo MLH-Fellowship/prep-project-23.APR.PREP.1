@@ -16,6 +16,24 @@ function App() {
   };
 
   useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        fetch(
+          `http://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=5&appid=864bc9e4e54e34b8ac0de0edb53fa68b`
+        )
+          .then((result) => result.json())
+          .then((data) => {
+            setCity(data[0].name)
+          });
+      });
+    } else {
+      alert("Can't access location");
+    }
+
+
+  }, []);
+
+  useEffect(() => {
     if (city) {
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
