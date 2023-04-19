@@ -7,6 +7,7 @@ function FlightAPI() {
   const [outboundDate, setOutboundDate] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [flightPrices, setFlightPrices] = useState([]);
+  const [showTable, setShowTable] = useState(false); // Add a state variable to track if the search button is clicked
 
   const handleSearch = async () => {
     try {
@@ -23,6 +24,7 @@ function FlightAPI() {
       const data = await response.json();
       console.log(data)
       setFlightPrices(data);
+      setShowTable(true); // Set the state variable to true when the search button is clicked
     } catch (error) {
       console.error(error);
     }
@@ -30,8 +32,10 @@ function FlightAPI() {
 
 
   return (
+    <>
+    <h2>Let's plan a trip!</h2>
     <div className="flight-prices-container">
-      <h2>Get Flight Prices</h2>
+      
       <label> Select Airport   - 
         <select value={source} onChange={(e) => setSource(e.target.value)}>
             <option value="">Select Source</option>
@@ -68,7 +72,7 @@ function FlightAPI() {
         />
       </label>
       <button onClick={handleSearch}>Search</button>
-
+      {showTable && ( 
       <table>
         <thead>
           <tr>
@@ -92,7 +96,9 @@ function FlightAPI() {
     ))}
 </tbody>
       </table>
+      )}
     </div>
+    </>
   );
 }
 
