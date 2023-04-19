@@ -4,6 +4,6 @@
     background-repeat: no-repeat;
     background-position: center;
     zoom: 1.2;
-    /* background-size: 20%; */
-    /* animation: sizeChanger 10s ease-in 0s infinite; */
+    background-image: url("/assets/weather-icons/clouds.svg");
+    background-color: transparent !important;
 }
