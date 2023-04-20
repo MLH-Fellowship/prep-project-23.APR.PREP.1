@@ -12,24 +12,19 @@ import (
 )
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	const basename = "https://api.openweathermap.org"
-	var endpoint string
-	query := ""
-
 	api := req.QueryStringParameters["api"]
-	switch api {
-	case "weather":
-		endpoint = "data/2.5/weather"
-	case "forecast":
-		endpoint = "data/2.5/forecast"
-	case "geo":
-		endpoint = fmt.Sprintf("geo/1.0/%s", req.QueryStringParameters["endpoint"])
-	default:
-		return handleError(400, fmt.Errorf(
-			"Request with error api: %s, allowed apis: 'current', 'forecast', 'geo'",
-			api))
+
+	basename, err := getBasename(api)
+	if err != nil {
+		return handleError(400, err)
 	}
 
+	endpoint, err := getEndpoint(api, req.QueryStringParameters)
+	if err != nil {
+		return handleError(400, err)
+	}
+
+	query := ""
 	for k, v := range req.QueryStringParameters {
 		if k == "api" || k == "endpoint" && api == "geo" {
 			continue
@@ -61,6 +56,32 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 		},
 		Body: string(strResp),
 	}, nil
+}
+
+func getBasename(api string) (basename string, err error) {
+	switch api {
+	case "weather", "forecast", "geo":
+		basename = "https://api.openweathermap.org"
+	case "flight":
+		basename = "https://skyscanner44.p.rapidapi.com"
+	default:
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+	}
+	return basename, nil
+}
+
+func getEndpoint(api string, queryParams map[string]string) (endpoint string, err error) {
+	switch api {
+	case "weather":
+		endpoint = "data/2.5/weather"
+	case "forecast":
+		endpoint = "data/2.5/forecast"
+	case "geo":
+		endpoint = fmt.Sprintf("geo/1.0/%s", queryParams["endpoint"])
+	default:
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+	}
+	return endpoint, nil
 }
 
 func handleError(code int, err error) (*events.APIGatewayProxyResponse, error) {
