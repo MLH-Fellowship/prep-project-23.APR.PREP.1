@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
-import WeatherOverlay from "./components/weatheroverlay";
+import WeatherOverlay from "./components/WeatherOverlay";
 import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
@@ -17,7 +17,7 @@ function App() {
     setCity(suggestion.name);
   };
   const [containerStyle, setContainerStyle] = useState({
-    backgroundColor: "#fff",
+    backgroundImage: `url(/assets/weather-icons/Clouds.svg)`
   });
 
   useEffect(() => {

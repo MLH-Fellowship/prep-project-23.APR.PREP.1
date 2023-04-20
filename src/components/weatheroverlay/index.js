@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css"
 
-const weatheroverlay = ({ style }) => {
+const WeatherOverlay = ({ style }) => {
     return (
         <>
             <div className="weather-overlay" style={style}>
@@ -11,4 +11,4 @@ const weatheroverlay = ({ style }) => {
     )
 }
 
-export default weatheroverlay;
+export default WeatherOverlay;
