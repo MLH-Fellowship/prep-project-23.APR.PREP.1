@@ -1,7 +1,7 @@
 import React from "react";
 import App from "./App";
 import "./Navbar.css"
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 import FlightAPI from "./FlightAPI";
 import Activities from "./components/dayplanner";
 import DayPlanner from "./components/DayPlanner";
@@ -14,19 +14,19 @@ function Navbar() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/dayplanner">Day Planner</Link>
+              <NavLink to="/dayplanner">Day Planner</NavLink>
             </li>
             <li>
-              <Link to="/trip-planner">Trip Planner</Link>
+              <NavLink to="/trip-planner">Trip Planner</NavLink>
             </li>
             <li>
-              <Link to="/climate-change">Climate Change</Link>
+              <NavLink to="/climate-change">Climate Change</NavLink>
             </li>
             <li>
-              <Link to="/about-us">About us</Link>
+              <NavLink to="/about-us">About us</NavLink>
             </li>
           </ul>
         </nav>

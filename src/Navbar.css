@@ -33,3 +33,8 @@ nav {
     background-color: #a0aef95e;
     border-radius: 30px;
   }
+
+  .active{
+    background-color: #a0aef95e;
+    border-radius: 30px;
+  }
