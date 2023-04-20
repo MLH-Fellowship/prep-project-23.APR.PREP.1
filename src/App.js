@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
-import WeatherOverlay from "./components/WeatherOverlay";
+import WeatherOverlay from "./components/weatheroverlay";
 import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
