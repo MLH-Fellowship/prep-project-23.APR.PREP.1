@@ -5,6 +5,7 @@ import WeatherOverlay from "./components/WeatherOverlay";
 import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
+import Essentials from "./components/essentials";
 
 function App() {
   const [error, setError] = useState(null);
