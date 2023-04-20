@@ -24,18 +24,14 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 		return handleError(400, err)
 	}
 
-	query := ""
-	for k, v := range req.QueryStringParameters {
-		if k == "api" || k == "endpoint" && api == "geo" {
-			continue
-		}
-		query = fmt.Sprintf("%s&%s=%s", query, k, v)
+	query := buildQueryStr(api, req.QueryStringParameters)
+
+	proxiedReq, err := buildRequest(api, basename, endpoint, query)
+	if err != nil {
+		return handleError(400, err)
 	}
-
-	uri := fmt.Sprintf("%s/%s?%s&appid=%s", basename, endpoint,
-		query, os.Getenv("REACT_APP_APIKEY"))
-
-	resp, err := http.Get(uri)
+	client := http.Client{}
+	resp, err := client.Do(proxiedReq)
 	if err != nil {
 		return handleError(502, err)
 	}
@@ -73,15 +69,54 @@ func getBasename(api string) (basename string, err error) {
 func getEndpoint(api string, queryParams map[string]string) (endpoint string, err error) {
 	switch api {
 	case "weather":
-		endpoint = "data/2.5/weather"
+		return "data/2.5/weather", nil
 	case "forecast":
-		endpoint = "data/2.5/forecast"
+		return "data/2.5/forecast", nil
 	case "geo":
-		endpoint = fmt.Sprintf("geo/1.0/%s", queryParams["endpoint"])
+		return fmt.Sprintf("geo/1.0/%s", queryParams["endpoint"]), nil
+	case "flight":
+		return "fly-to-country", nil
 	default:
 		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
 	}
-	return endpoint, nil
+}
+
+func buildQueryStr(api string, queryParams map[string]string) (query string) {
+	for k, v := range queryParams {
+		if k == "api" || k == "endpoint" && api == "geo" {
+			continue
+		}
+		query = fmt.Sprintf("%s&%s=%s", query, k, v)
+	}
+	return query[1:] // remove initial ’&’
+}
+
+func buildRequest(api, basename, endpoint, query string) (req *http.Request, err error) {
+	switch api {
+	case "weather", "forecast", "geo":
+		uri := fmt.Sprintf("%s/%s?%s&appid=%s", basename, endpoint,
+			query, os.Getenv("REACT_APP_APIKEY"))
+		req, err := http.NewRequest("GET", uri, nil)
+		return req, err
+	case "flight":
+		uri := fmt.Sprintf("%s/%s?%s", basename, endpoint,
+			query)
+		req, err := http.NewRequest("GET", uri, nil)
+		if err != nil {
+			return req, err
+		}
+		req.Header = http.Header{
+			"X-RapidAPI-Key":  []string{
+				os.Getenv("REACT_APP_SKYSCANNER_API_KEY"),
+			},
+			"X-RapidAPI-Host": []string{
+				"skyscanner44.p.rapidapi.com",
+			},
+		}
+		return req, nil
+	default:
+		return nil, fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+	}
 }
 
 func handleError(code int, err error) (*events.APIGatewayProxyResponse, error) {
