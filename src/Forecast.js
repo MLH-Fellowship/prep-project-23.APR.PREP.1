@@ -15,7 +15,8 @@ const Forecast = ({ city }) => {
   const basename = process.env.NODE_ENV === "development" ?
 		   'http://0.0.0.0:8888' :
 		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
-  const uri = basename + '/api/openweather?kind=forecast&q=' + city 
+  const uri = basename + '/api/proxy?api=forecast&q=' + city +
+	      '&units=metric';
   
   const handleChangeView = (data) => {
     setForecastView(data);
@@ -44,7 +45,7 @@ const Forecast = ({ city }) => {
           setForecastError(error);
         }
       );
-  }, [city]);
+  }, [city, uri]);
 
   return (
     <div className="forecast">

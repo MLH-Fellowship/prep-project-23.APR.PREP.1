@@ -14,26 +14,27 @@ import (
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	const basename = "https://api.openweathermap.org"
 	var endpoint string
-	var query string
+	query := ""
 
-	switch kind := req.QueryStringParameters["kind"]; kind {
+	api := req.QueryStringParameters["api"]
+	switch api {
 	case "weather":
 		endpoint = "data/2.5/weather"
-		query = fmt.Sprintf("q=%s&units=metric",
-			req.QueryStringParameters["q"])
 	case "forecast":
 		endpoint = "data/2.5/forecast"
-		query = fmt.Sprintf("q=%s&units=metric",
-			req.QueryStringParameters["q"])
 	case "geo":
-		endpoint = "geo/1.0/direct"
-		query = fmt.Sprintf("q=%s&limit=%s",
-			req.QueryStringParameters["q"],
-			req.QueryStringParameters["limit"])
+		endpoint = fmt.Sprintf("geo/1.0/%s", req.QueryStringParameters["endpoint"])
 	default:
 		return handleError(400, fmt.Errorf(
-			"Request with error kind: %s, allowed kinds: 'current', 'forecast', 'geo'",
-			kind))
+			"Request with error api: %s, allowed apis: 'current', 'forecast', 'geo'",
+			api))
+	}
+
+	for k, v := range req.QueryStringParameters {
+		if k == "api" || k == "endpoint" && api == "geo" {
+			continue
+		}
+		query = fmt.Sprintf("%s&%s=%s", query, k, v)
 	}
 
 	uri := fmt.Sprintf("%s/%s?%s&appid=%s", basename, endpoint,

@@ -14,8 +14,8 @@ function AutoCity({ onSelect }) {
 
   useEffect(() => {
     if (inputValue.length > 2 && !selected) { // only fetch if not selected
-      const uri = basename + '/api/openweather?kind=geo&q=' + inputValue +
-		  "&limit=5";
+      const uri = basename + '/api/proxy?api=geo&endpoint=direct&q='
+		+ inputValue + "&limit=5";
       setLoading(true);
       fetch(uri)
         .then((res) => res.json())
@@ -32,7 +32,7 @@ function AutoCity({ onSelect }) {
     } else {
       setSuggestions([]);
     }
-  }, [inputValue, selected]); // include selected in dependencies
+  }, [inputValue, selected, basename]); // include selected in dependencies
 
   const handleSelect = (suggestion) => {
     onSelect(suggestion);
