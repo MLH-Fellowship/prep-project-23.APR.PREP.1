@@ -16,7 +16,7 @@
   REACT_APP_URL = "https://mlh-prep-23-apr-prep-1-project.netlify.app"
 
 [context.deploy-preview.environment]
-  REACT_APP_URL = "https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app"
+  REACT_APP_URL = "https://deploy-preview-45--mlh-prep-23-apr-prep-1-project.netlify.app"
 
 [context.dev.environment]
   REACT_APP_URL = "http://0.0.0.0:8888"
