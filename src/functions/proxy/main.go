@@ -106,7 +106,7 @@ func buildRequest(api, basename, endpoint, query string) (req *http.Request, err
 			return req, err
 		}
 		req.Header = http.Header{
-			"X-RapidAPI-Key":  []string{
+			"X-RapidAPI-Key": []string{
 				os.Getenv("REACT_APP_SKYSCANNER_API_KEY"),
 			},
 			"X-RapidAPI-Host": []string{
