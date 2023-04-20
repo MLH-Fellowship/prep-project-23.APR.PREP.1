@@ -4,6 +4,7 @@ import "./FlightAPI.css";
 function FlightAPI() {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
+  const [currency, setCurrency] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [flightPrices, setFlightPrices] = useState([]);
@@ -16,8 +17,9 @@ function FlightAPI() {
     try {
       const options = { method: 'GET' };
   
-      const response = await fetch(uri, options);
-      console.log(uri)
+
+      const response = await fetch(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${source}&departureDate=2023-07-01&returnDate=2023-07-21&currency=INR&locale=en-GB&country=IN`, options);
+      console.log(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${origin}&departureDate=${outboundDate}&returnDate=${inboundDate}&currency=${currency}&locale=en-GB&country=IN`)
       const data = await response.json();
       console.log(data)
       setFlightPrices(data);
@@ -53,6 +55,15 @@ function FlightAPI() {
         </select>
       </label>
       <label>
+        Currency   -
+        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+            <option value="">Select Currency</option>
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+      </label>
+      <label>
         Outbound Date   -
         <input
             type="date"
@@ -75,8 +86,8 @@ function FlightAPI() {
           <tr>
             <th>Destination</th>
             <th>Country</th>
-            <th>Direct Price</th>
-            <th>Indirect Price</th>
+            <th>Direct Flight Price</th>
+            <th>Indirect Flight Price</th>
             <th>Hotel Price</th>
           </tr>
         </thead>
