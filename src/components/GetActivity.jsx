@@ -7,7 +7,9 @@ import Loading from "../Loading/Loading";
 
 function GetActivity(props) {
   const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+
+      // apiKey:'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',
+     apiKey: process.env.REACT_APP_OPENAI_API_KEY
   });
 
   const openai = new OpenAIApi(configuration);
@@ -16,6 +18,7 @@ function GetActivity(props) {
   const [loading, setLoading] = useState(false);
 
   const prompt = `suggest activities when it's ${props.weather} and the temperature is ${props.temp} C in ${props.location}`;
+  
 
   async function generateActivity() {
     setLoading(true);
@@ -31,8 +34,8 @@ function GetActivity(props) {
 
     setLoading(false);
     const paragraph = response.data.choices[0].text
-    let sentences = paragraph.split('\n');
-    sentences = sentences.filter(sentence=>sentence !=='')
+    let sentences = paragraph.split(/(\d+. )/);
+    sentences = sentences.filter(element => isNaN(element));
     console.log(sentences);
     setResult(sentences);
       }
@@ -40,6 +43,10 @@ function GetActivity(props) {
   useEffect(() => {
     generateActivity();
   }, [prompt]);
+  
+  // useEffect(() => {
+  //     localStorage.getItem('weatherCondition');
+  // });
 
   return (
     <>
@@ -49,9 +56,14 @@ function GetActivity(props) {
           <Loading />
         ) : (
           <div className="activity">
+                  {/* <h3>Activities You can do Today</h3> */}
             <div className="activities">{result.map(activity=>{
               return <div className = "activityCard">{activity}</div>
             })}</div>
+            <div className="day-planner-list">
+              <h3>Day Planner</h3>
+              <hr></hr>
+              </div>
           </div>
         )}
       </div>

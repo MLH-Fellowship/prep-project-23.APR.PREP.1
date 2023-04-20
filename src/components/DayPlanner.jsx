@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from '../mlh-prep.png'
 import "../App.css"
 import AutoCity from "./AutoCity";
 import GetActivity from "./GetActivity";
@@ -41,7 +40,6 @@ function DayPlanner() {
   } else {
     return (
       <>
-        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
         <div>
           <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
           <AutoCity onSelect={handleSelect} />

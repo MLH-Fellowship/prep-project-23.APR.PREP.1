@@ -3,7 +3,9 @@ import React, { useEffect } from "react";
 
 
 const Activities = () => {
-
+    useEffect(()=>{
+        var weather=localStorage.getItem('weatherCondition')
+    })
     const activitiesByTemp = {
                 Snow: [
                     "Skiing",

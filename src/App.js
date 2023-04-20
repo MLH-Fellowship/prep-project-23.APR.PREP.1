@@ -44,30 +44,41 @@ function App() {
     return <div>Error: {error.message}</div>;
   } else {
     return <>
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div className="container">
         <div className="header">
           <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
           <AutoCity onSelect={handleSelect} />
+          <div className="google-maps"></div>
         </div>
-        <div className="results">
-          {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
-          {isLoaded && results && (<>
-            <h3>{results.weather[0].main}</h3>
-            <p>Feels like {results.main.feels_like}°C</p>
-            <i><p>{results.name}, {results.sys.country}</p></i>
-          </>)}
+
+        <div className="weather-forecast">
+          <div className="results">
+            {!isLoaded && <h2>Loading...</h2>}
+            {console.log(results)}
+            {isLoaded && results && (<>
+              <h1>{results.weather[0].main}</h1>
+              <p>Feels like {results.main.feels_like}°C</p>
+              <i><p>{results.name}, {results.sys.country}</p></i>
+            </>)}
+          </div>
+          <Essentials today={results?.weather[0].main}/>
+          <Forecast city={city} />
         </div>
-        <Essentials today={results?.weather[0].main}/>
-        <Forecast city={city} />
+
+        <div className="planners">
+            <div className="dayplanner">
+                  <h2>Plan your day with some Fun activities!</h2>
+                  <Link to='/Dayplanner'>day planner</Link>
+                  {/* <button onClick={() => window.location.href = '/dayplanner?results=' + results}>Day Planner</button> */}
+                  {/* <Link to={`/dayplanner?weather=${JSON.stringify(results)}`}>Day planner</Link> */}
+            </div>
+
+            <div className="trip-planner">
+                <h1>Want to start a Trip?</h1>
+                <h3>Try our <Link to='/trip-planner'>Trip planner</Link></h3>
+            </div>
+        </div>
       </div>
-      <div className="dayplanner">
-              <h4>Plan your day with some Fun activities!</h4>
-              <Link to='/dayplanner'>day planner</Link>
-              {/* <button onClick={() => window.location.href = '/dayplanner?results=' + results}>Day Planner</button> */}
-              <Link to={`/dayplanner?weather=${JSON.stringify(results)}`}>Day planner</Link>
-        </div>
     </>
   }
 }

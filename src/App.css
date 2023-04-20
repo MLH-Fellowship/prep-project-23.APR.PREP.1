@@ -14,13 +14,17 @@ margin-top: 20px;
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex;
+  width: 100%; 
+  height: 100%; 
+  /* margin:0 1rem; */
+  margin:0.5rem 1.5rem;
+
 }
 
 .header {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-right:1rem ;
+  width: 25%;
 }
 
 input {
@@ -30,7 +34,17 @@ input {
   width: 100%;
   max-width: 400px;
 }
-
+.google-maps{
+  margin-top: 1rem;
+  width: 95%;
+  height: 60%;
+  background-color: beige;
+  border-radius: 14px;
+}
+.weather-forecast{
+  margin-right: 1rem;
+  width: 50%;
+}
 .results {
   background-color: white;
   margin-top: 20px;
@@ -39,19 +53,18 @@ input {
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-h2 {
-  font-size: 24px;
+.planners{
+  text-align: left;
+  width: 20%;
 }
+.dayplanner{
+  margin-bottom: 10rem;
 
-h3 {
-  font-size: 20px;
 }
-
 @media only screen and (max-width: 600px) {
-  .logo {
+  /* .logo {
     width: 50% !important;
-  }
+  } */
 
   input {
     max-width: 85%;

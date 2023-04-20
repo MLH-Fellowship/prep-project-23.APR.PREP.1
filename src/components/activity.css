@@ -1,24 +1,39 @@
 .activity-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   margin: 2rem 0;
 }
 .activity{
-    width: 80%;
+    display: flex;
 }
+
 .activities {
+    width: 65%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+
 .activityCard{
     padding: 1rem;
-    background-color: #fff;
-    border-radius: 15px;
-    color: #000;
-    margin: 1rem;
-    width: 28%;
+    background-color:rgb(24, 24, 24);
+    border-radius: 14px;
+    color: #e6e6e6;
+    margin: 1rem 0 1rem 1rem ;
+    width: 35%;
+    font-size: larger;
     text-align: left;
+}
+.day-planner-list{
+    background-color: rgb(255, 255, 195);
+    width: 25%;
+    height: 60%;
+    color: black;
+    margin: 1rem 0;
+    border-radius: 14px;
+}
+hr{
+    border: 1px solid rgb(24, 24, 24);
 }

@@ -3,8 +3,7 @@ import App from "./App";
 import "./Navbar.css"
 import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 import FlightAPI from "./FlightAPI";
-import Activities from "./components/dayplanner";
-import DayPlanner from "./components/DayPlanner";
+import DayPlanner from "./components/DayPlanner.jsx";
 
 
 function Navbar() {
@@ -17,7 +16,7 @@ function Navbar() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/dayplanner">Day Planner</NavLink>
+              <NavLink to="/Dayplanner">Day Planner</NavLink>
             </li>
             <li>
               <NavLink to="/trip-planner">Trip Planner</NavLink>
@@ -33,7 +32,7 @@ function Navbar() {
         <Routes>
           <Route exact path="/" element={<App/>} />
           <Route path="/climate-change" element={<App/>} />
-          <Route path="/dayplanner" element={<DayPlanner/>}/>
+          <Route path="/Dayplanner" element={<DayPlanner/>}/>
           <Route path="/trip-planner" element={<FlightAPI/>} />
           <Route path="/about-us" element={<App/>} />
         </Routes>
