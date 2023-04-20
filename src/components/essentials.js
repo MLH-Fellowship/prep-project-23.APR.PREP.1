@@ -1,4 +1,5 @@
 import './essentials.css';
+import React from "react";
 
 const Essentials = (props) =>{
 
