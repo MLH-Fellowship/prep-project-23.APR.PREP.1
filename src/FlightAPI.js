@@ -4,6 +4,7 @@ import "./FlightAPI.css";
 function FlightAPI() {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
+  const [currency, setCurrency] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [flightPrices, setFlightPrices] = useState([]);
@@ -15,11 +16,12 @@ function FlightAPI() {
   const handleSearch = async () => {
     try {
       const options = { method: 'GET' };
-  
       const response = await fetch(uri, options);
       console.log(uri)
+
       const data = await response.json();
       console.log(data)
+      
       setFlightPrices(data);
       setShowTable(true); // Set the state variable to true when the search button is clicked
     } catch (error) {
@@ -53,6 +55,15 @@ function FlightAPI() {
         </select>
       </label>
       <label>
+        Currency   -
+        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+            <option value="">Select Currency</option>
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+      </label>
+      <label>
         Outbound Date   -
         <input
             type="date"
@@ -75,8 +86,8 @@ function FlightAPI() {
           <tr>
             <th>Destination</th>
             <th>Country</th>
-            <th>Direct Price</th>
-            <th>Indirect Price</th>
+            <th>Direct Flight Price</th>
+            <th>Indirect Flight Price</th>
             <th>Hotel Price</th>
           </tr>
         </thead>
