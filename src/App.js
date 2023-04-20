@@ -12,9 +12,7 @@ function App() {
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
 
-  const basename = process.env.NODE_ENV === "development" ?
-		   'http://0.0.0.0:8888' :
-		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+  const basename = process.env.REACT_APP_URL
   const uri = basename + '/api/proxy?api=weather&q=' + city +
 	      '&units=metric';
   

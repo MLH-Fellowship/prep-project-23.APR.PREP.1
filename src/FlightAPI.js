@@ -9,9 +9,7 @@ function FlightAPI() {
   const [flightPrices, setFlightPrices] = useState([]);
   const [showTable, setShowTable] = useState(false); // Add a state variable to track if the search button is clicked
 
-  const basename = process.env.NODE_ENV === "development" ?
-		   'http://0.0.0.0:8888' :
-		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+  const basename = process.env.REACT_APP_URL
   const uri = `${basename}/api/proxy?api=flight&destination=${destination}&origin=${source}&departureDate=2023-07-01&returnDate=2023-07-21&currency=INR&locale=en-GB&country=IN`
   
   const handleSearch = async () => {

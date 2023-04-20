@@ -12,9 +12,7 @@ const Forecast = ({ city }) => {
   const [forecastView, setForecastView] = useState(null);
   const todayDate = new Date(Date.now());
 
-  const basename = process.env.NODE_ENV === "development" ?
-		   'http://0.0.0.0:8888' :
-		   'https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app';
+  const basename = process.env.REACT_APP_URL
   const uri = basename + '/api/proxy?api=forecast&q=' + city +
 	      '&units=metric';
   
