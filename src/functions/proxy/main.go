@@ -56,12 +56,12 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 
 func getBasename(api string) (basename string, err error) {
 	switch api {
-	case "weather", "forecast", "geo":
+	case "weather", "forecast", "geo", "air_pollution":
 		basename = "https://api.openweathermap.org"
 	case "flight":
 		basename = "https://skyscanner44.p.rapidapi.com"
 	default:
-		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'air_pollution', 'flight'", api)
 	}
 	return basename, nil
 }
@@ -74,10 +74,12 @@ func getEndpoint(api string, queryParams map[string]string) (endpoint string, er
 		return "data/2.5/forecast", nil
 	case "geo":
 		return fmt.Sprintf("geo/1.0/%s", queryParams["endpoint"]), nil
+	case "air_pollution":
+		return "data/2.5/air_pollution", nil
 	case "flight":
 		return "fly-to-country", nil
 	default:
-		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'air_pollution', 'flight'", api)
 	}
 }
 
@@ -93,7 +95,7 @@ func buildQueryStr(api string, queryParams map[string]string) (query string) {
 
 func buildRequest(api, basename, endpoint, query string) (req *http.Request, err error) {
 	switch api {
-	case "weather", "forecast", "geo":
+	case "weather", "forecast", "geo", "air_pollution":
 		uri := fmt.Sprintf("%s/%s?%s&appid=%s", basename, endpoint,
 			query, os.Getenv("REACT_APP_APIKEY"))
 		req, err := http.NewRequest("GET", uri, nil)
