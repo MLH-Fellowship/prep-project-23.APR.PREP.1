@@ -12,7 +12,7 @@ const Forecast = ({ city }) => {
   const [forecastView, setForecastView] = useState(null);
   const todayDate = new Date(Date.now());
 
-  const basename = process.env.REACT_APP_URL
+  const basename = process.env.REACT_APP_URL;
   const uri = basename + '/api/proxy?api=forecast&q=' + city +
 	      '&units=metric';
   

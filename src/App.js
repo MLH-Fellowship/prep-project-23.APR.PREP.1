@@ -12,7 +12,7 @@ function App() {
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
 
-  const basename = process.env.REACT_APP_URL
+  const basename = process.env.REACT_APP_URL;
   const uri = basename + '/api/proxy?api=weather&q=' + city +
 	      '&units=metric';
   
