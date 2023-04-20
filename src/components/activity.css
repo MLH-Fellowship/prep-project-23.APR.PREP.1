@@ -10,6 +10,7 @@
 .activities {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .activityCard{
@@ -19,5 +20,5 @@
     color: #000;
     margin: 1rem;
     width: 28%;
-
+    text-align: left;
 }
