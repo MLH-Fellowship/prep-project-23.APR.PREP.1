@@ -10,8 +10,12 @@ You'll be using React initially to build this. If you're new to React, check out
 
 # Development setup
 
+First, `netlify-cli` needs to be installed:
+
+```npm i -g netlify-cli```
+
 After cloning the repo, switch to the repository and run the following commands:
 
 ```npm install```
 
-```npm start```
+```netlify dev```
