@@ -5,6 +5,7 @@ import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
 import React  from 'react';
 import Essentials from "./components/essentials";
+import { Link } from "react-router-dom";
 
 function App() {
   const [error, setError] = useState(null);
@@ -28,6 +29,7 @@ function App() {
               setIsLoaded(false);
             } else {
               setIsLoaded(true);
+              localStorage.setItem('weatherCondition',result)
               setResults(result);
             }
           },
@@ -60,7 +62,12 @@ function App() {
         <Essentials today={results?.weather[0].main}/>
         <Forecast city={city} />
       </div>
-      <Essentials today={results?.weather[0].main}/>
+      <div className="dayplanner">
+              <h4>Plan your day with some Fun activities!</h4>
+              <Link to='/dayplanner'>day planner</Link>
+              {/* <button onClick={() => window.location.href = '/dayplanner?results=' + results}>Day Planner</button> */}
+              <Link to={`/dayplanner?weather=${JSON.stringify(results)}`}>Day planner</Link>
+        </div>
     </>
   }
 }
