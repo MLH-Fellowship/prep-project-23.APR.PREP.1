@@ -1,0 +1,23 @@
+.activity-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.activity{
+    width: 80%;
+}
+.activities {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.activityCard{
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 15px;
+    color: #000;
+    margin: 1rem;
+    width: 28%;
+
+}
