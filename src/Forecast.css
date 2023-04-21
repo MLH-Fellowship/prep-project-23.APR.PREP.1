@@ -1,17 +1,11 @@
-.forecast {
-  border-radius: 1rem;
-  padding: 3rem 0;
-  margin: 3rem 2rem;
-}
-
-.forecast__heading {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 3rem;
-}
-
 .forecast__cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .forecast__cards {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
 }
