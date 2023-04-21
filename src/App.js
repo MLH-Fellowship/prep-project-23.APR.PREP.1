@@ -13,15 +13,17 @@ function App() {
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
 
+  const basename = process.env.REACT_APP_URL;
+  const uri = basename + '/api/proxy?api=weather&q=' + city +
+	      '&units=metric';
+  
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
   };
 
   useEffect(() => {
     if (city) {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
-      )
+      fetch(uri)
         .then((res) => res.json())
         .then(
           (result) => {
@@ -39,7 +41,7 @@ function App() {
           }
         );
     }
-  }, [city]);
+  }, [city, uri]);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {

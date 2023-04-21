@@ -1,0 +1,22 @@
+[build]
+  functions = "src/functions/"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = '/api/*'
+  to = '/.netlify/functions/:splat'
+  status = 200
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+[context.production.environment]
+  REACT_APP_URL = "https://mlh-prep-23-apr-prep-1-project.netlify.app"
+
+[context.deploy-preview.environment]
+  REACT_APP_URL = "https://deploy-preview-25--mlh-prep-23-apr-prep-1-project.netlify.app"
+
+[context.dev.environment]
+  REACT_APP_URL = "http://0.0.0.0:8888"
