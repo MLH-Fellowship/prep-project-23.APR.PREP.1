@@ -68,6 +68,11 @@ h3 {
     margin-right: 1rem;
   }
 
+  .container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .weather-overlay-container {
     flex-direction: column;
   }
