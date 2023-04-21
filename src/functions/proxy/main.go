@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/MLH-Fellowship/prep-project-23.APR.PREP.1/proxyv3/openaiproxy"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"io/ioutil"
@@ -13,6 +14,9 @@ import (
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	api := req.QueryStringParameters["api"]
+	if api == "openai" {
+		return openaiproxy.Handler(req.QueryStringParameters)
+	}
 
 	basename, err := getBasename(api)
 	if err != nil {
@@ -56,12 +60,14 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 
 func getBasename(api string) (basename string, err error) {
 	switch api {
-	case "weather", "forecast", "geo":
-		basename = "https://api.openweathermap.org"
+	case "weather", "forecast", "geo", "air_pollution":
+		return "https://api.openweathermap.org", nil
 	case "flight":
-		basename = "https://skyscanner44.p.rapidapi.com"
+		return "https://skyscanner44.p.rapidapi.com", nil
+	case "maps":
+		return "https://maps.googleapis.com", nil
 	default:
-		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'air_pollution', 'flight', 'maps'", api)
 	}
 	return basename, nil
 }
@@ -74,10 +80,14 @@ func getEndpoint(api string, queryParams map[string]string) (endpoint string, er
 		return "data/2.5/forecast", nil
 	case "geo":
 		return fmt.Sprintf("geo/1.0/%s", queryParams["endpoint"]), nil
+	case "air_pollution":
+		return "data/2.5/air_pollution", nil
 	case "flight":
 		return "fly-to-country", nil
+	case "maps":
+		return "maps/api/geocode/json", nil
 	default:
-		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
+		return "", fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'air_pollution', 'flight', 'maps'", api)
 	}
 }
 
@@ -93,7 +103,7 @@ func buildQueryStr(api string, queryParams map[string]string) (query string) {
 
 func buildRequest(api, basename, endpoint, query string) (req *http.Request, err error) {
 	switch api {
-	case "weather", "forecast", "geo":
+	case "weather", "forecast", "geo", "air_pollution":
 		uri := fmt.Sprintf("%s/%s?%s&appid=%s", basename, endpoint,
 			query, os.Getenv("REACT_APP_APIKEY"))
 		req, err := http.NewRequest("GET", uri, nil)
@@ -114,6 +124,11 @@ func buildRequest(api, basename, endpoint, query string) (req *http.Request, err
 			},
 		}
 		return req, nil
+	case "maps":
+		uri := fmt.Sprintf("%s/%s?%s&key=%s", basename, endpoint,
+			query, os.Getenv("REACT_APP_GMAPS"))
+		req, err := http.NewRequest("GET", uri, nil)
+		return req, err
 	default:
 		return nil, fmt.Errorf("Request with error api: %s, allowed apis: 'current', 'forecast', 'geo', 'flight'", api)
 	}
