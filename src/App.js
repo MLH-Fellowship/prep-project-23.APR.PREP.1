@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import './App.css';
+import GMaps from './Map' 
 import logo from "./mlh-prep.png";
 import WeatherOverlay from "./components/WeatherOverlay";
 import AutoCity from "./components/AutoCity";
@@ -12,7 +13,37 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+  const [cood, setCood] = useState({lat: 40.7127753, lng: -74.0059728})
+  console.log(cood, "COORDINATE STATE")
 
+  function getCityLocation(city) {
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GMAPS}`)
+      .then((response) => {
+          return response.json();
+      }).then(jsonData => {
+        setCood(jsonData.results[0].geometry.location); 
+      })
+  }
+
+
+  useEffect(() => {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          if (result['cod'] !== 200) {
+            setIsLoaded(false)
+          } else {
+            setIsLoaded(true);
+            setResults(result);
+          }
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [city])
   //  const basename = process.env.REACT_APP_URL;
   //  const uri = basename + '/api/proxy?api=weather&q=' + city +
   //              '&units=metric';
@@ -22,6 +53,7 @@ function App() {
 
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
+    getCityLocation(suggestion.name)
   };
   const [containerStyle, setContainerStyle] = useState({
     backgroundImage: `url(/assets/weather-icons/Clouds.svg)`
@@ -33,7 +65,7 @@ function App() {
         .then((res) => res.json())
         .then(
           (result) => {
-            if (result["cod"] !== 200) {
+            if (result["cod"] === 200) {
               setIsLoaded(false);
             } else {
               setIsLoaded(true);
@@ -69,6 +101,10 @@ function App() {
             <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
             <AutoCity onSelect={handleSelect} />
           </div>
+          <GMaps
+            cood={cood}
+            setCood={setCood}
+          />
           <WeatherOverlay style={containerStyle} />
           <div className="results">
             {!isLoaded && <h2>Loading...</h2>}

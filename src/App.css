@@ -29,6 +29,10 @@ margin-top: 20px;
   border-radius: 1rem;
 }
 
+.map {
+  max-width: 600px;
+}
+
 input {
   padding: 10px;
   border-radius: 4px;
