@@ -23,6 +23,34 @@ function App() {
         setCood(jsonData.results[0].geometry.location); 
       })
   }
+  
+  function reverseGeocoding(cood){
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${cood.lat},${cood.lng}&key=${process.env.REACT_APP_GMAPS}`)
+      .then((response) => {
+          return response.json();
+      }).then(jsonData => {
+        
+        let city = ''
+        let country = ''
+        
+        for (const component of jsonData.results[0].address_components) {
+          if ((component.types.includes('locality') && city === '')|| 
+              (component.types.includes('administrative_area_level_1') && city === '')|| 
+              (component.types.includes('administrative_area_level_2') && city === '')|| 
+              (component.types.includes('postal_town') && city === '')) {
+            city = component.long_name;
+          } else if (component.types.includes('country')) {
+            country = component.long_name;
+          }
+        }
+
+        setCity(city)
+      })
+  }
+
+  useEffect(() => {
+    reverseGeocoding(cood)
+  }, [cood])
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
