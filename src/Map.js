@@ -3,11 +3,12 @@ import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 import './Map.css';
 
 const containerStyle = {
-  width: '80%',
-  height: '500px'
-};
+  "width": '100%',
+  "height": '400px',
+  "border-radius": '4px'
+}
 
-const zoom = 4;
+const zoom = 13;
 
 const GMaps = ({ cood, setCood }) => {
   const { isLoaded } = useJsApiLoader({
@@ -29,6 +30,7 @@ const GMaps = ({ cood, setCood }) => {
     <div className="gmaps">
       <GoogleMap
         mapContainerStyle={containerStyle}
+        options={{mapId: "36a8bbd50e48e368"}}
         center={cood}
         zoom={zoom}
         onLoad={onLoad}
