@@ -33,6 +33,8 @@ const AirQuality = ({ coordinates }) => {
             const index = result.list[0].main.aqi;
             setAirQualityIndex(airQualityMap[index]);
             const airQualityObj = result.list[0].components;
+            console.log(airQualityObj);
+
             const airQualityArray = Object.entries(airQualityObj).map(
               ([name, value]) => {
                 return {
@@ -42,6 +44,7 @@ const AirQuality = ({ coordinates }) => {
               }
             );
             setResults(airQualityArray);
+            console.log(airQualityArray);
           },
           (error) => {
             console.log(error);
@@ -60,8 +63,8 @@ const AirQuality = ({ coordinates }) => {
         <div>
           <p>Air Quality Index: {airQualityIndex}</p>
 
-          <div className="air__chart">
-            <BarChart width={730} height={300} data={results}>
+          <div style={{display: 'flex', justifyContent: 'center'}} className="air__chart">
+            <BarChart width={1000} height={500} data={results}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
