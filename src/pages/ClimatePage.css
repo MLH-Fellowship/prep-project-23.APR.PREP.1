@@ -1,25 +1,21 @@
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin: 10px;
-    padding: 10px;
-    max-width: 300px;
-  }
-  
- 
-  
-  .card p {
-    font-size: 1em;
-    line-height: 1.5em;
-    color: black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  }
-  
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  padding: 10px;
+  max-width: 300px;
+}
+
+.card p {
+  font-size: 1em;
+  line-height: 1.5em;
+  color: black;
+}
