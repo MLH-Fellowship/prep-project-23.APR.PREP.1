@@ -10,19 +10,15 @@
 .view__heading {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #333;
-}
-
-.view__heading p {
-  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin: 0 0 0 0;
+  gap: 5px;
 }
 
 .view__hours {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 1rem;
-  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 700px) {
