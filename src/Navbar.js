@@ -22,8 +22,8 @@ function Navbar() {
       <nav className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <Link to="/" onClick={toggleMenu}>
-              Home
+            <Link to="/day-planner" onClick={toggleMenu}>
+              Day Planner
             </Link>
           </li>
           <li className="nav__item">
@@ -34,11 +34,6 @@ function Navbar() {
           <li className="nav__item">
             <Link to="/climate-change" onClick={toggleMenu}>
               Climate Change
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/about-us" onClick={toggleMenu}>
-              About us
             </Link>
           </li>
         </ul>
