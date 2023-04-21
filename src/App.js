@@ -13,10 +13,13 @@ function App() {
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
 
-  const basename = process.env.REACT_APP_URL;
-  const uri = basename + '/api/proxy?api=weather&q=' + city +
-	      '&units=metric';
-  
+  //  const basename = process.env.REACT_APP_URL;
+  //  const uri = basename + '/api/proxy?api=weather&q=' + city +
+  //              '&units=metric';
+
+  const uri = 'https://api.openweathermap.org/data/2.5/weather?&q=' + city +
+  	      '&units=metric&appid=' + process.env.REACT_APP_APIKEY;
+
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
   };
