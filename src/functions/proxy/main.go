@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/MLH-Fellowship/prep-project-23.APR.PREP.1/proxyv3/openaiproxy"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"io/ioutil"
@@ -13,6 +14,9 @@ import (
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	api := req.QueryStringParameters["api"]
+	if api == "openai" {
+		return openaiproxy.Handler(req.QueryStringParameters)
+	}
 
 	basename, err := getBasename(api)
 	if err != nil {
@@ -144,4 +148,3 @@ func handleError(code int, err error) (*events.APIGatewayProxyResponse, error) {
 func main() {
 	lambda.Start(handler)
 }
-
