@@ -1,7 +1,7 @@
 # MLH Prep Project
 
 Over the next 2 weeks, you'll be building a React App that works with various APIs (Application Programming Interfaces) that talk to different data sources to do cool stuff.
-
+n
 We're using the [OpenWeather API](https://openweathermap.org/current) to get weather data on different cities. Your challenge over the next 2 weeks is to build out this website and add even more functionality to it. At the moment, it displays basic information about a location when you type it in. Check out [Issues](/issues) for some more ideas!
 
 You'll need to get your own API Key from their website (for free) and add it as an environment variable in a `.env` file. We have a template available as `example.env`.
@@ -10,8 +10,14 @@ You'll be using React initially to build this. If you're new to React, check out
 
 # Development setup
 
-After cloning the repo, switch to the repository and run the following commands:
+- Install the Go compiler: https://go.dev/doc/install
+- Install netlify-cli: `npm i -g netlify-cli`
+- Switch to the repository and install the dependencies: `npm install`
+- To run the project: `netlify dev`
 
-```npm install```
+Troubleshooting: 
+- Make sure the Go compiler is installed and working. Running `go version` should print the current version in that case.
+- Delete `node_modules` and run `npm install` again
+- Make sure you have the variable `REACT_APP_APIKEY` set to your Openweathermap API key in `.env`
+- Do a fresh clone from Github and do `npm install` and `netlify dev` again
 
-```npm start```

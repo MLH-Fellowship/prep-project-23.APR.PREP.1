@@ -4,23 +4,22 @@ import "./FlightAPI.css";
 function FlightAPI() {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
+  const [currency, setCurrency] = useState("");
   const [outboundDate, setOutboundDate] = useState("");
   const [inboundDate, setInboundDate] = useState("");
   const [flightPrices, setFlightPrices] = useState([]);
   const [showTable, setShowTable] = useState(false); // Add a state variable to track if the search button is clicked
 
+  const basename = process.env.REACT_APP_URL;
+  const uri = `${basename}/api/proxy?api=flight&destination=${destination}&origin=${source}&departureDate=2023-07-01&returnDate=2023-07-21&currency=INR&locale=en-GB&country=IN`
+  
   const handleSearch = async () => {
     try {
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': `${process.env.REACT_APP_SKYSCANNER_API_KEY}`,
-          'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
-        }
-      };
+      const options = { method: 'GET' };
   
+
       const response = await fetch(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${source}&departureDate=2023-07-01&returnDate=2023-07-21&currency=INR&locale=en-GB&country=IN`, options);
-      console.log(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${origin}&departureDate=${outboundDate}&returnDate=${inboundDate}&currency=INR&locale=en-GB&country=IN`)
+      console.log(`https://skyscanner44.p.rapidapi.com/fly-to-country?destination=${destination}&origin=${origin}&departureDate=${outboundDate}&returnDate=${inboundDate}&currency=${currency}&locale=en-GB&country=IN`)
       const data = await response.json();
       console.log(data)
       setFlightPrices(data);
@@ -56,6 +55,15 @@ function FlightAPI() {
         </select>
       </label>
       <label>
+        Currency   -
+        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+            <option value="">Select Currency</option>
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+      </label>
+      <label>
         Outbound Date   -
         <input
             type="date"
@@ -78,8 +86,8 @@ function FlightAPI() {
           <tr>
             <th>Destination</th>
             <th>Country</th>
-            <th>Direct Price</th>
-            <th>Indirect Price</th>
+            <th>Direct Flight Price</th>
+            <th>Indirect Flight Price</th>
             <th>Hotel Price</th>
           </tr>
         </thead>
