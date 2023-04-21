@@ -1,0 +1,8 @@
+.weather-overlay {
+    height: 9rem;
+    margin-top: 0rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    zoom: 1.2;
+    background-color: transparent !important;
+}
