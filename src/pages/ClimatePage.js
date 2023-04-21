@@ -7,17 +7,17 @@ import '../pages/ClimatePage.css';
 const ClimatePage = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [climatePageCity, setClimatePageCity] = useState('');
+  const [city, setCity] = useState('');
   const [coordinates, setCoordinates] = useState([]);
 
   const handleSelect = (suggestion) => {
-    setClimatePageCity(suggestion.name);
+    setCity(suggestion.name);
   };
 
   useEffect(() => {
-    if (climatePageCity) {
+    if (city) {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${climatePageCity}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
@@ -35,7 +35,7 @@ const ClimatePage = () => {
           }
         );
     }
-  }, [climatePageCity]);
+  }, [city]);
 
   return (
     <div className="climate">
