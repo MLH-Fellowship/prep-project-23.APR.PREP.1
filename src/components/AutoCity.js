@@ -12,8 +12,11 @@ function AutoCity({ onSelect }) {
 
   useEffect(() => {
     if (inputValue.length > 2 && !selected) { // only fetch if not selected
-      const uri = basename + '/api/proxy?api=geo&endpoint=direct&q='
-		+ inputValue + "&limit=5";
+      // const uri = basename + '/api/proxy?api=geo&endpoint=direct&q='
+      //	+ inputValue + "&limit=5";
+      const uri = 'https://api.openweathermap.org/geo/1.0/direct?&q=' +
+		  inputValue + '&limit=5&appid=' +
+		  process.env.REACT_APP_APIKEY;
       setLoading(true);
       fetch(uri)
         .then((res) => res.json())
