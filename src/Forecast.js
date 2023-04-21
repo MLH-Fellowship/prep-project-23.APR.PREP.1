@@ -12,17 +12,19 @@ const Forecast = ({ city }) => {
   const [forecastView, setForecastView] = useState(null);
   const todayDate = new Date(Date.now());
 
+  //  const basename = process.env.REACT_APP_URL;
+  //  const uri = basename + '/api/proxy?api=forecast&q=' + city +
+  //              '&units=metric';
+  const uri = 'https://api.openweathermap.org/data/2.5/forecast?&q=' + city +
+	      '&units=metric&appid=' + process.env.REACT_APP_APIKEY;
+
+  
   const handleChangeView = (data) => {
     setForecastView(data);
   };
 
   useEffect(() => {
-    fetch(
-      'https://api.openweathermap.org/data/2.5/forecast?q=' +
-        city +
-        '&units=metric&appid=' +
-        process.env.REACT_APP_APIKEY
-    )
+    fetch(uri)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -44,7 +46,7 @@ const Forecast = ({ city }) => {
           setForecastError(error);
         }
       );
-  }, [city]);
+  }, [city, uri]);
 
   return (
     <div className="forecast">

@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+.header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .logo {
 display: block;
@@ -18,12 +22,11 @@ margin-top: 20px;
 
 .container {
   max-width: 600px;
-  margin: 0 auto;
-}
-
-.header {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 2rem auto;
+  object-fit: cover;
+  background-image: linear-gradient(45deg, black, transparent);
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
 input {
@@ -36,7 +39,6 @@ input {
 
 .results {
   background-color: white;
-  margin-top: 20px;
   border-radius: 8px;
   color: black;
   padding: 10px;
@@ -54,6 +56,11 @@ h3 {
 @media only screen and (max-width: 600px) {
   .logo {
     width: 50% !important;
+  }
+  
+  .container {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   input {
