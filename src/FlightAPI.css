@@ -1,64 +1,67 @@
 .flight-prices-container {
-    background-color: white;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    color: black;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    max-width: 800px;
-  }
-  
-  .flight-prices-container h2 {
-    margin-top: 0;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input, select {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    width: 200px;
-  }
-  
-  button {
-    background-color: #133667;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 30px;
-    margin: 15px auto;
-  }
-  button:hover {
-    background-color: #0a243f;
-  }
-  
-  table {
-    border-collapse: collapse;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  tbody tr:hover {
-    background-color: #f5f5f5;
-  } 
+  background-color: white;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  max-width: 800px;
+}
+
+.flight-prices-container h2 {
+  margin-top: 0;
+}
+
+.flight label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.flight input,
+.flight select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.flight button {
+  background-color: #133667;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  margin: 15px auto;
+}
+
+.flight button:hover {
+  background-color: #0a243f;
+}
+
+.flight table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.flight th,
+.flight td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.flight th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.flight tbody tr:hover {
+  background-color: #f5f5f5;
+}
