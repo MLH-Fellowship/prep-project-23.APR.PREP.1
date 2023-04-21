@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css"
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ function Navbar() {
   };
 
   return (
-    <div className={`navbar ${isOpen ? "navbar--open" : ""}`}>
+    <div className={`navbar ${isOpen ? 'navbar--open' : ''}`}>
       <div className="navbar__left">
         <Link to="/">TravelPrep</Link>
       </div>
