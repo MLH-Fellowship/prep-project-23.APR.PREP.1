@@ -4,7 +4,7 @@ import logo from "./mlh-prep.png";
 import WeatherOverlay from "./components/WeatherOverlay";
 import AutoCity from "./components/AutoCity";
 import Forecast from './Forecast';
-import React  from 'react';
+import React from 'react';
 import Essentials from "./components/essentials";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
 
   const basename = process.env.REACT_APP_URL;
   const uri = basename + '/api/proxy?api=weather&q=' + city +
-	      '&units=metric';
-  
+    '&units=metric';
+
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
   };
@@ -66,17 +66,19 @@ function App() {
             <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
             <AutoCity onSelect={handleSelect} />
           </div>
-          <WeatherOverlay style={containerStyle} />
-          <div className="results">
-            {!isLoaded && <h2>Loading...</h2>}
-            {console.log(results)}
-            {isLoaded && results && (
-            <>
-              <h3>{results.weather[0].main}</h3>
-              <p>Feels like {results.main.feels_like}°C</p>
-              <i><p>{results.name}, {results.sys.country}</p></i>
-              <Forecast city={city} />
-            </>)}
+          <div className="weather-overlay-container">
+            <WeatherOverlay style={containerStyle} />
+            <div className="results">
+              {!isLoaded && <h2>Loading...</h2>}
+              {console.log(results)}
+              {isLoaded && results && (
+                <>
+                  <h3>{results.weather[0].main}</h3>
+                  <p>Feels like {results.main.feels_like}°C</p>
+                  <i><p>{results.name}, {results.sys.country}</p></i>
+                  <Forecast city={city} />
+                </>)}
+            </div>
           </div>
         </div>
       </>
