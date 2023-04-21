@@ -34,13 +34,7 @@ input {
   width: 100%;
   max-width: 400px;
 }
-.google-maps{
-  margin-top: 1rem;
-  width: 95%;
-  height: 60%;
-  background-color: beige;
-  border-radius: 14px;
-}
+
 .weather-forecast{
   margin-right: 1rem;
   width: 50%;

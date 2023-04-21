@@ -48,9 +48,7 @@ function App() {
         <div className="header">
           <h2>Enter a city below <span role="img" aria-label="emoji">👇</span></h2>
           <AutoCity onSelect={handleSelect} />
-          <div className="google-maps"></div>
         </div>
-
         <div className="weather-forecast">
           <div className="results">
             {!isLoaded && <h2>Loading...</h2>}

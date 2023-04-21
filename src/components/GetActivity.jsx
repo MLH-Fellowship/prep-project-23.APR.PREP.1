@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 
-import "./activity.css";
+import "./getactivity.css";
 import Loading from "../Loading/Loading";
 
 
 function GetActivity(props) {
   const configuration = new Configuration({
 
-      // apiKey:'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',
      apiKey: process.env.REACT_APP_OPENAI_API_KEY
   });
 
@@ -60,10 +59,7 @@ function GetActivity(props) {
             <div className="activities">{result.map(activity=>{
               return <div className = "activityCard">{activity}</div>
             })}</div>
-            <div className="day-planner-list">
-              <h3>Day Planner</h3>
-              <hr></hr>
-              </div>
+            
           </div>
         )}
       </div>

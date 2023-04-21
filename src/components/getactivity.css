@@ -1,0 +1,31 @@
+.activity-container {
+  width: 100%;
+  margin: 2rem 0 ;
+}
+
+.activities {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.activityCard{
+    padding: 1.2rem;
+    background-color:rgb(24, 24, 24);
+    border-radius: 14px;
+    color: #e6e6e6;
+    margin: 1rem 0 1rem 2.5rem ;
+    width: 35%;
+    font-size: larger;
+    text-align: center;
+    transition:0.5s;
+}
+.activityCard:hover{
+    transform: scale(1.1);
+    box-shadow: -0.4em 0 0 black ;
+    background-color:rgb(209, 186, 255);
+    color: black;
+    transition: 0.2s;
+}
