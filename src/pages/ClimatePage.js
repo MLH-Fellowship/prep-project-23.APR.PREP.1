@@ -15,8 +15,8 @@ const ClimatePage = () => {
   };
 
   useEffect(() => {
-    if (city) {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      if (city) {
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
         );
@@ -24,14 +24,16 @@ const ClimatePage = () => {
 
         if (result.cod !== 200) {
           setError(result.message);
+          setIsLoaded(false);
         } else {
           setError(null);
           setIsLoaded(true);
           setCoordinates(result.coord);
         }
-      };
-      fetchData();
-    }
+      }
+    };
+
+    fetchData();
   }, [city]);
 
   return (
@@ -54,7 +56,6 @@ const ClimatePage = () => {
           </div>
 
           {error && <div>Error: {error}</div>}
-
           {isLoaded && coordinates && (
             <div className="climate__recharts">
               <div className="climate__recharts--1">
