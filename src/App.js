@@ -17,7 +17,12 @@ function App() {
     backgroundImage: `url(/assets/weather-icons/Clouds.svg)`,
   });
 
-  function getCityLocation(city) {
+  const handleSelect = (suggestion) => {
+    setCity(suggestion.name);
+    getCityLocation(suggestion.name);
+  };
+
+  const getCityLocation = (city) => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GMAPS}`
     )
@@ -27,51 +32,39 @@ function App() {
       .then((jsonData) => {
         setCood(jsonData.results[0].geometry.location);
       });
-  }
-
-  useEffect(() => {
-    fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=' +
-        city +
-        '&units=metric' +
-        '&appid=' +
-        process.env.REACT_APP_APIKEY
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          if (result['cod'] !== 200) {
-            setIsLoaded(false);
-          } else {
-            setIsLoaded(true);
-            setResults(result);
-            setContainerStyle(getContainerStyle(results.weather[0].main));
-          }
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, [city]);
-  //  const basename = process.env.REACT_APP_URL;
-  //  const uri = basename + '/api/proxy?api=weather&q=' + city +
-  //              '&units=metric';
-
-  const uri =
-    'https://api.openweathermap.org/data/2.5/weather?&q=' +
-    city +
-    '&units=metric&appid=' +
-    process.env.REACT_APP_APIKEY;
-
-  const handleSelect = (suggestion) => {
-    setCity(suggestion.name);
-    getCityLocation(suggestion.name);
   };
 
-  function getContainerStyle(weather) {
+  const getContainerStyle = (weather) => {
     return { backgroundImage: `url(/assets/weather-icons/${weather}.svg)` };
-  }
+  };
+
+  useEffect(() => {
+    if (city) {
+      fetch(
+        'https://api.openweathermap.org/data/2.5/weather?q=' +
+          city +
+          '&units=metric' +
+          '&appid=' +
+          process.env.REACT_APP_APIKEY
+      )
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            if (result['cod'] !== 200) {
+              setIsLoaded(false);
+            } else {
+              setIsLoaded(true);
+              setResults(result);
+              setContainerStyle(getContainerStyle(results.weather[0].main));
+            }
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
+  }, [city]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
