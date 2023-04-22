@@ -114,8 +114,8 @@ function App() {
         <div className="weather__col--3">
           <div className="weather__cta weather__cta--day">
             <p>Plan your day with fun activities!</p>
-            <Link to="/day-planner">
-              <button>Day Planner</button>
+            <Link to="/">
+              <button>Coming Soon</button>
             </Link>
           </div>
 

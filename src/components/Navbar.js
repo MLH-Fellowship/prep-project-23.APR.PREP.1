@@ -21,11 +21,11 @@ function Navbar() {
       </button>
       <nav className="nav">
         <ul className="nav__list">
-          <li className="nav__item">
+          {/* <li className="nav__item">
             <Link to="/day-planner" onClick={toggleMenu}>
               Day Planner
             </Link>
-          </li>
+          </li> */}
           <li className="nav__item">
             <Link to="/trip-planner" onClick={toggleMenu}>
               Trip Planner
