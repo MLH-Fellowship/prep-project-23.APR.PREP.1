@@ -15,22 +15,23 @@ const ClimatePage = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
-      );
-      const result = await response.json();
+    if (city) {
+      const fetchData = async () => {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        );
+        const result = await response.json();
 
-      if (result.cod !== 200) {
-        setError(result.message);
-      } else {
-        setError(null);
-        setIsLoaded(true);
-        setCoordinates(result.coord);
-      }
-    };
-
-    fetchData();
+        if (result.cod !== 200) {
+          setError(result.message);
+        } else {
+          setError(null);
+          setIsLoaded(true);
+          setCoordinates(result.coord);
+        }
+      };
+      fetchData();
+    }
   }, [city]);
 
   return (
