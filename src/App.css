@@ -5,6 +5,10 @@ body {
   overflow-x: hidden;
 }
 
+.header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .logo {
 display: block;
@@ -15,18 +19,16 @@ margin-top: 20px;
 }
 
 .container {
-  display: flex;
-  width: 100%; 
-  height: 100%; 
-  /* margin:0 1rem; */
-  margin:0.5rem 1.5rem;
-
+  max-width: 600px;
+  margin: 2rem auto;
+  object-fit: cover;
+  background-image: linear-gradient(45deg, black, transparent);
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
-.header {
-  margin:0 1rem ;
-  width: 25%;
-
+.map {
+  max-width: 600px;
 }
 
 input {
@@ -43,7 +45,6 @@ input {
 }
 .results {
   background-color: white;
-  margin-top: 20px;
   border-radius: 8px;
   color: black;
   padding: 10px;
@@ -64,9 +65,14 @@ input {
 
 
 @media only screen and (max-width: 600px) {
-  /* .logo {
+   .logo {
     width: 50% !important;
-  } */
+  }
+  
+  .container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 
   input {
     max-width: 85%;
@@ -78,3 +84,4 @@ input {
   }
 
 }
+

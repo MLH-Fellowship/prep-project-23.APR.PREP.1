@@ -7,7 +7,7 @@ import GetActivity from "./GetActivity";
 function DayPlanner() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Hyderabad");
   const [results, setResults] = useState(null);
 
   const handleSelect = (suggestion) => {
@@ -42,37 +42,27 @@ function DayPlanner() {
     return (
       <>
       <div className="dayplanner-container">
-          <div className="dayplanner-col-1">
-              <h1>Activities You can do Today</h1>
-              {results !== null &&<GetActivity temp = {results.main.temp} weather = {results.weather[0].main} location={results.name} />}
-          </div>
-          <div className="dayplanner-col-2">
-              <div className="dayplanner-header">
+              <div className="dayplanner-weather">
                   <h2>Enter a city below </h2>
                   <AutoCity onSelect={handleSelect} />
+                <div className="dayplanner-results">
+                  {!isLoaded && <h2>Loading...</h2>}
+                  {isLoaded && results && (
+                    <>
+                      <h3>{results.weather[0].main}</h3>
+                      <p>Feels like {results.main.feels_like}°C</p>
+                      <i>
+                        <p>
+                          {results.name}, {results.sys.country}
+                        </p>
+                      </i>
+                    </>
+                  )}
+                  </div>
               </div>
-
-              <div className="dayplanner-results">
-                {!isLoaded && <h2>Loading...</h2>}
-                {isLoaded && results && (
-                  <>
-                    <h3>{results.weather[0].main}</h3>
-                    <p>Feels like {results.main.feels_like}°C</p>
-                    <i>
-                      <p>
-                        {results.name}, {results.sys.country}
-                      </p>
-                    </i>
-                  </>
-                )}
-              </div>
-
-              <div className="day-planner-list">
-                  <h3>Day Planner</h3>
-                  <hr></hr>
-              </div>
+              {results !== null &&<GetActivity temp = {results.main.temp} weather = {results.weather[0].main} location={results.name} />}
           </div>
-      </div>
+
       </>
     );
   }

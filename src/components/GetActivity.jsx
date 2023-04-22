@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-
+import Todolist from "./todo-dayplanner";
 import "./getactivity.css";
 import Loading from "../Loading/Loading";
 
@@ -15,6 +15,7 @@ function GetActivity(props) {
 
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [todoItem, setTodoItem]= useState([]);
 
   const prompt = `suggest activities when it's ${props.weather} and the temperature is ${props.temp} C in ${props.location}`;
   
@@ -38,30 +39,39 @@ function GetActivity(props) {
     console.log(sentences);
     setResult(sentences);
       }
-
   useEffect(() => {
     generateActivity();
   }, [prompt]);
   
-  // useEffect(() => {
-  //     localStorage.getItem('weatherCondition');
-  // });
+  const addTodos = activity =>{
+    setTodoItem([...todoItem, activity]);
+  }
+
 
   return (
     <>
-      {/* <button onClick={generateActivity}>click</button> */}
-      <div className="activity-container">
+    <div className="day-planner">
+       <div className="activity-container">
+       <h1>Activities You can do Today</h1>
         {loading ? (
           <Loading />
         ) : (
           <div className="activity">
-                  {/* <h3>Activities You can do Today</h3> */}
-            <div className="activities">{result.map(activity=>{
-              return <div className = "activityCard">{activity}</div>
-            })}</div>
-            
-          </div>
+            <div className="activities">
+              {result.map(activity=>{
+              return (
+                <div className="activityCard"
+                  key={activity}
+                  onClick={() => addTodos(activity)} >
+                  {activity}
+                </div>
+            );
+            })}
+          </div>    
+        </div>
         )}
+      </div>
+      <Todolist todoItem={todoItem} addTodos={addTodos} setTodoItem={setTodoItem}/>
       </div>
     </>
   );

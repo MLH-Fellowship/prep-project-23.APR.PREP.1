@@ -1,43 +1,54 @@
-import React from "react";
-import App from "./App";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css"
-import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
-import FlightAPI from "./FlightAPI";
-import DayPlanner from "./components/DayPlanner.jsx";
-
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Dayplanner">Day Planner</NavLink>
-            </li>
-            <li>
-              <NavLink to="/trip-planner">Trip Planner</NavLink>
-            </li>
-            <li>
-              <NavLink to="/climate-change">Climate Change</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about-us">About us</NavLink>
-            </li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route exact path="/" element={<App/>} />
-          <Route path="/climate-change" element={<App/>} />
-          <Route path="/Dayplanner" element={<DayPlanner/>}/>
-          <Route path="/trip-planner" element={<FlightAPI/>} />
-          <Route path="/about-us" element={<App/>} />
-        </Routes>
+    <div className={`navbar ${isOpen ? "navbar--open" : ""}`}>
+      <div className="navbar__left">
+        <Link to="/">TravelPrep</Link>
       </div>
-    </Router>
+      <button className="hamburger" onClick={toggleMenu}>
+        <span className="hamburger__box">
+          <span className="hamburger__inner"></span>
+        </span>
+      </button>
+      <nav className="nav">
+        <ul className="nav__list">
+          <li className="nav__item">
+            <Link to="/" onClick={toggleMenu}>
+              Home
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link to="/Dayplanner" onClick={toggleMenu}>
+              Day Planner
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link to="/trip-planner" onClick={toggleMenu}>
+              Trip Planner
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link to="/climate-change" onClick={toggleMenu}>
+              Climate Change
+            </Link>
+          </li>
+          <li className="nav__item">
+            <Link to="/about-us" onClick={toggleMenu}>
+              About us
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }
 
