@@ -87,7 +87,7 @@
   .hamburger {
     display: block;
     position: absolute;
-    top: 1rem;
+    top: 2rem;
     right: 1rem;
     z-index: 3;
     cursor: pointer;
