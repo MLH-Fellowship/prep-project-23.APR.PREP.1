@@ -3,6 +3,8 @@ import { Configuration, OpenAIApi } from "openai";
 import Todolist from "./todo-dayplanner";
 import "./getactivity.css";
 import Loading from "../../Loading/Loading";
+import { FaRedoAlt } from "react-icons/fa";
+
 
 
 function GetActivity(props) {
@@ -57,7 +59,7 @@ function GetActivity(props) {
        <div className="activity-container">
         <div className="heading">
           <h1>Activities You can do Today</h1>
-          <button className="refresh-btn" onClick={Refresh}>Refresh</button>
+          <button className="refresh-btn" onClick={Refresh}><FaRedoAlt/></button>
         </div>
         {loading ? (
           <Loading />

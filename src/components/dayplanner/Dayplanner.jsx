@@ -43,8 +43,10 @@ function DayPlanner() {
       <>
       <div className="dayplanner-container">
               <div className="dayplanner-weather">
+                <div>
                   <h2>Enter a city below </h2>
                   <AutoCity onSelect={handleSelect} />
+                  </div>
                 <div className="dayplanner-results">
                   {!isLoaded && <h2>Loading...</h2>}
                   {isLoaded && results && (
@@ -60,6 +62,7 @@ function DayPlanner() {
                   )}
                   </div>
               </div>
+              <hr></hr>
               {results !== null &&<GetActivity temp = {results.main.temp} weather = {results.weather[0].main} location={results.name} />}
           </div>
 
