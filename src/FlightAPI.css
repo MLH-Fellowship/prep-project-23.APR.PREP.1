@@ -25,7 +25,7 @@
     width: 200px;
   }
   
-  button {
+  .flight-prices-container button {
     background-color: #133667;
     border: none;
     color: white;
@@ -38,7 +38,7 @@
     border-radius: 30px;
     margin: 15px auto;
   }
-  button:hover {
+  .flight-prices-container button:hover {
     background-color: #0a243f;
   }
   

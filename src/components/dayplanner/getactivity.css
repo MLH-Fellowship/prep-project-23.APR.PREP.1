@@ -20,11 +20,12 @@
     background-color:rgb(24, 24, 24);
     border-radius: 14px;
     color: #e6e6e6;
-    margin: 1rem 0 1rem 2.5rem ;
+    margin: 1rem 0 0.5rem 2.5rem ;
     width: 35%;
     font-size: larger;
     text-align: center;
     transition:0.5s;
+    cursor: pointer;
 }
 .activityCard:hover{
     transform: scale(1.1);
@@ -33,9 +34,26 @@
     color: black;
     transition: 0.2s;
 }
+.heading{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.refresh-btn {
+    background-color: rgb(209, 186, 255);
+    color: black;
+    margin:0;
+    padding: 1.5vh 1.5vw;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    font-size: medium;
+    transform: translateX(12vw);
+    
+}
 .day-planner-list{
     background-color: rgb(255, 255, 195);
-    height: 30%;
+    height:inherit ;
     color: black;
     margin-top: 17rem;
     padding: 0 1vw;
@@ -52,6 +70,14 @@
     margin: 0;
 }
 
-.day-planner-list button{
+.clear-btn{
     margin: 0;
+    background-color: #133667;
+    border: none;
+    color: white;
+    padding: 2vh 2vw;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: medium;
+
 }

@@ -5,7 +5,7 @@ import './index.css';
 import Navbar from './Navbar';
 import App from './App';
 import FlightAPI from './FlightAPI';
-import DayPlanner from './components/Dayplanner';
+import DayPlanner from './components/dayplanner/Dayplanner';
 
 ReactDOM.render(
   <React.StrictMode>

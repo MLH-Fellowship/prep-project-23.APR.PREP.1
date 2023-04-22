@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./dayplanner.css"
-import AutoCity from "./AutoCity";
+import AutoCity from "../AutoCity";
 import GetActivity from "./GetActivity";
 
 

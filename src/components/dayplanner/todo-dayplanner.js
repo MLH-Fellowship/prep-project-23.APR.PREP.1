@@ -20,8 +20,7 @@ function Todolist({ todoItem, addTodos, setTodoItem}) {
         ))}
       </ul>
       {handleAddTodo}
-      <button className="clear-list" onClick={removeAll}>Clear</button>
-      {/* <button onClick={()=>}>Clear</button> */}
+      <button className="clear-btn" onClick={removeAll}>Clear</button>
     </div>
   );
 }
