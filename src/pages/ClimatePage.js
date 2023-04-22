@@ -15,26 +15,22 @@ const ClimatePage = () => {
   };
 
   useEffect(() => {
-    if (city) {
-      fetch(
+    const fetchData = async () => {
+      const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
-      )
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            if (result['cod'] !== 200) {
-              setIsLoaded(false);
-            } else {
-              setIsLoaded(true);
-              setCoordinates(result.coord);
-            }
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }
+      );
+      const result = await response.json();
+
+      if (result.cod !== 200) {
+        setError(result.message);
+      } else {
+        setError(null);
+        setIsLoaded(true);
+        setCoordinates(result.coord);
+      }
+    };
+
+    fetchData();
   }, [city]);
 
   return (
@@ -56,7 +52,7 @@ const ClimatePage = () => {
             <AutoCity onSelect={handleSelect} />
           </div>
 
-          {error && <div>Error: {error.message}</div>}
+          {error && <div>Error: {error}</div>}
 
           {isLoaded && coordinates && (
             <div className="climate__recharts">
