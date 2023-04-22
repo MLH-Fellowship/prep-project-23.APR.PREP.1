@@ -11,6 +11,9 @@ import {
 
 const AirQuality = ({ coordinates }) => {
   const { lon, lat } = coordinates;
+
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [results, setResults] = useState(null);
   const [airQualityIndex, setAirQualityIndex] = useState(null);
 
@@ -23,47 +26,56 @@ const AirQuality = ({ coordinates }) => {
   };
 
   useEffect(() => {
-    if (lon && lat) {
-      fetch(
-        `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_APIKEY}`
-      )
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            const index = result.list[0].main.aqi;
-            setAirQualityIndex(airQualityMap[index]);
-            const airQualityObj = result.list[0].components;
-            console.log(airQualityObj);
-
-            const airQualityArray = Object.entries(airQualityObj).map(
-              ([name, value]) => {
-                return {
-                  name,
-                  value,
-                };
-              }
-            );
-            setResults(airQualityArray);
-            console.log(airQualityArray);
-          },
-          (error) => {
-            console.log(error);
-          }
+    const fetchAirQuality = async () => {
+      if (lon && lat) {
+        const response = await fetch(
+          `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_APIKEY}`
         );
-    }
-  }, [coordinates]);
+
+        const result = await response.json();
+        console.log('result', result);
+
+        if (!('list' in result)) {
+          setError('Could not locate data.');
+          setIsLoaded(false);
+        } else {
+          const index = result.list[0].main.aqi;
+          setAirQualityIndex(airQualityMap[index]);
+
+          const airQualityObj = result.list[0].components;
+          const airQualityArray = Object.entries(airQualityObj).map(
+            ([name, value]) => {
+              return {
+                name,
+                value,
+              };
+            }
+          );
+          setError(null);
+          setIsLoaded(true);
+          setResults(airQualityArray);
+        }
+      }
+    };
+
+    fetchAirQuality();
+  }, [lon, lat]);
+
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
-      <div>
-        <h2>Air Quality</h2>
-      </div>
-
-      {results && (
+      {!isLoaded && <h2>Loading...</h2>}
+      {isLoaded && results && (
         <div>
+          <h2>Air Quality</h2>
+
           <p>Air Quality Index: {airQualityIndex}</p>
 
-          <div style={{display: 'flex', justifyContent: 'center'}} className="air__chart">
+          <div
+            style={{ display: 'flex', justifyContent: 'center' }}
+            className="air__chart"
+          >
             <BarChart width={1000} height={500} data={results}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />

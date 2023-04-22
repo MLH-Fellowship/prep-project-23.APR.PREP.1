@@ -100,7 +100,7 @@ function App() {
               </div>
 
               <div className="weather__essentials">
-                <Essentials today={results.weather[0].main} />
+                <Essentials today={results?.weather[0].main} />
               </div>
 
               <div>
