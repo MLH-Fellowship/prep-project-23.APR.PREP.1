@@ -15,6 +15,11 @@ function App() {
   const [containerStyle, setContainerStyle] = useState({});
   const [cood, setCood] = useState({ lat: 40.7127753, lng: -74.0059728 });
 
+  const handleSelect = (suggestion) => {
+    setCity(suggestion.name);
+    getCityLocation(suggestion.name);
+  };
+
   const getCityLocation = (city) => {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GMAPS}`
@@ -31,20 +36,15 @@ function App() {
     return { backgroundImage: `url(/assets/weather-icons/${weather}.svg)` };
   };
 
-  const handleSelect = (suggestion) => {
-    setCity(suggestion.name);
-    getCityLocation(suggestion.name);
-  };
-
-  const uri =
-    'https://api.openweathermap.org/data/2.5/weather?&q=' +
-    city +
-    '&units=metric&appid=' +
-    process.env.REACT_APP_APIKEY;
-
   useEffect(() => {
     if (city) {
-      fetch(uri)
+      fetch(
+        'https://api.openweathermap.org/data/2.5/weather?q=' +
+          city +
+          '&units=metric' +
+          '&appid=' +
+          process.env.REACT_APP_APIKEY
+      )
         .then((res) => res.json())
         .then(
           (result) => {
@@ -62,7 +62,7 @@ function App() {
           }
         );
     }
-  }, [city, uri]);
+  }, [city]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -75,9 +75,7 @@ function App() {
             <p className="weather__search--prompt">Enter a city</p>
             <AutoCity onSelect={handleSelect} />
           </div>
-          <div className="weather__placeholder weather__placeholder--1">
-            <GMaps cood={cood} setCood={setCood} />
-          </div>
+          <GMaps cood={cood} setCood={setCood} />
           <div className="weather__placeholder weather__placeholder--2">
             Playlist
             <br />
