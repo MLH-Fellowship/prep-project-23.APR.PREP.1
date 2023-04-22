@@ -61,7 +61,7 @@ const AirQuality = ({ coordinates }) => {
     fetchAirQuality();
   }, [lon, lat]);
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
