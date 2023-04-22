@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AutoCity from './components/AutoCity';
 import WeatherOverlay from './components/WeatherOverlay';
-import Forecast from './Forecast';
+import Forecast from './components/forecast/Forecast';
 import Essentials from './components/essentials';
-import GMaps from './Map';
+import GMaps from './components/Map';
 
 function App() {
   const [error, setError] = useState(null);
