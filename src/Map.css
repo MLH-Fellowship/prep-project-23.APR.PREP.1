@@ -1,5 +1,16 @@
 .gmaps {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 25.3rem;
+}
+
+.gmaps__error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #133667;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
