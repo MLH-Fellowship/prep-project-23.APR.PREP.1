@@ -1,6 +1,6 @@
 import React from 'react';
 import './DayView.css';
-import { padLeftTwo, DayName } from './helpers';
+import { padLeftTwo, DayName } from '../../helpers';
 
 const DayView = ({ day, todayDate }) => {
   const renderedHours = day.hours.map((hourInfo, idx) => (
@@ -25,9 +25,7 @@ const DayView = ({ day, todayDate }) => {
 
   return (
     <div className="view">
-      <p className="view__heading">
-	{DayName(day, todayDate)}
-      </p>
+      <p className="view__heading">{DayName(day, todayDate)}</p>
 
       <div className="view__hours">{renderedHours}</div>
     </div>

@@ -1,36 +1,38 @@
 .AutoCity {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .AutoCity input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .AutoCity-suggestions {
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
-  }
-  
-  .AutoCity-suggestion {
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  .AutoCity-suggestion:hover,
-  .AutoCity-suggestion:focus {
-    background-color: #f5f5f5;
-  }
-  
+  position: relative;
+  width: 100%;
+}
+
+.AutoCity input {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.AutoCity-suggestions {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.AutoCity-suggestion {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.AutoCity-suggestion:hover,
+.AutoCity-suggestion:focus {
+  background-color: #f5f5f5;
+}

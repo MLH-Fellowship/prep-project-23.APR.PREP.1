@@ -1,24 +1,30 @@
 .view {
   display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
   background-color: lightgray;
   color: #333;
-  padding: 2rem 2rem 3rem;
+  padding: 1rem 1rem 2rem;
   border-radius: 1rem;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 }
 
 .view__heading {
-  font-size: 1.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin: 0 0 1.5rem;
+  gap: 5px;
 }
 
 .view__hours {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+@media screen and (max-width: 700px) {
+  .view__hours {
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+  }
 }
 
 .hour {

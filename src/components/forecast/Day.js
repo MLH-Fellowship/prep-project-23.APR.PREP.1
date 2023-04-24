@@ -1,6 +1,6 @@
 import React from 'react';
 import './Day.css';
-import { DayName } from './helpers';
+import { DayName } from '../../helpers';
 
 const Day = ({ day, handleChange, todayDate }) => {
   return (
@@ -13,9 +13,7 @@ const Day = ({ day, handleChange, todayDate }) => {
       </div>
 
       <div className="day__text">
-        <p className="day__date">
-	  {DayName(day, todayDate)}
-        </p>
+        <p className="day__date">{DayName(day, todayDate)}</p>
 
         <p className="day__condition">{day.weather.description}</p>
 

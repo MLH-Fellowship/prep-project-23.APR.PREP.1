@@ -1,13 +1,12 @@
-import React from "react";
-import "./style.css"
+import React from 'react';
+import './style.css';
 
 const WeatherOverlay = ({ style }) => {
-    return (
-        <>
-            <div className="weather-overlay" style={style}>
-            </div>
-        </>
-    )
-}
+  return (
+    <div>
+      <div className="weather-overlay" style={style}></div>
+    </div>
+  );
+};
 
 export default WeatherOverlay;
