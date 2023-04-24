@@ -29,7 +29,7 @@ const AirQuality = ({ coordinates }) => {
     const fetchAirQuality = async () => {
       if (lon && lat) {
         const response = await fetch(
-          `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_APIKEY}`
+          `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_APIKEY}`
         );
 
         const result = await response.json();
