@@ -13,7 +13,7 @@ function App() {
   const [city, setCity] = useState('Mumbai');
   const [results, setResults] = useState(null);
   const [containerStyle, setContainerStyle] = useState({});
-  const [cood, setCood] = useState({ lat: 40.7127753, lng: -74.0059728 });
+  const [cood, setCood] = useState({ lat: 19.076, lng: 72.8777 });
 
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
