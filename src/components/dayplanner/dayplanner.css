@@ -53,14 +53,14 @@ hr{
  .dayplanner-weather {
   /* margin: 0 2rem; */
   margin: 0;
-  transform: translateX(67vw);
+  transform: translateX(69vw);
   margin-top: 1vh;
   width: 28%;
 }
   .dayplanner-results {
     padding: 0.2vh;
     padding-bottom: 1vh;
-    margin-top: 1.5vh;
+    margin-top: 1rem;
   }
   
 .dayplanner-results h3, p{
@@ -107,20 +107,20 @@ h2{
       width: 45%;
       margin-left: 3vw;
     }
-    input{
+    .dayplanner-container input{
       width: 100%;
       margin-top: 2vh;
     }
-    hr{
+    .dayplanner-container hr{
       display: block;
       width: 90%;
       border: 0.1vh solid rgba(255, 255, 255, 0.145);
     }
-    h1{
+    .dayplanner-container h1{
       font-size:1.3rem;
       padding-left:5vw;
     }
-    h2{
+    .dayplanner-containerh2{
       font-size: large;
       font-weight: 500;
     }

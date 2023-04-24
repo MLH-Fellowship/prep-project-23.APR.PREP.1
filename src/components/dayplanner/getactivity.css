@@ -3,7 +3,7 @@
 }
 .activity-container {
 
-  width: 85%;
+  width: 75%;
   margin: 1rem 0 ;
 }
 
@@ -57,13 +57,14 @@
 .day-planner-list{
     background-color: rgb(255, 255, 195);
     color: black;
-    margin-top: 17rem;
+    margin-top: 17.6rem;
     padding: 2vh 1vw 0 1vw;
     border-radius: 14px;
     text-align: left;
-    width: 30%;
-    margin-right: 2.5rem;
-    position:relative;
+    width: 25%;
+    margin-right: 4rem;
+    position:absolute;
+    transform: translateX(70.5vw);
     
 }
 .day-planner-list p {
@@ -97,7 +98,7 @@
 @media only screen and (max-width:950px) {
 
     .activity-container {
-      width: 85%;
+      width: 75%;
     }
     
     .activities {
@@ -129,12 +130,20 @@
     }
     .day-planner-list{      
         margin-top: 16rem;
-        margin-right: 2rem;
-        position:relative;
+        margin-right: 3rem;
+        /* margin-right: 4rem; */
+        position:absolute;
+        transform: translateX(70.5vw);
         
     }
     .day-planner-list hr{
         display: block;
+    }
+    .day-planner-list h2{
+        font-weight: bold;
+    }
+    .day-planner-list p{
+        font-size:x-small;
     }
     
     .clear-btn{
@@ -172,14 +181,18 @@
     .day-planner-list{
         border-radius: 10px;
         width: 80%;
-        margin: 0 2rem;
+        margin: 1.5rem 2rem;
         position:relative;
-        padding: 1vh 2vw;
+        transform: translateX(0vw);
+        padding: 1vh 0.5rem;
     }
-    h2{
-        margin: 0;
+    .day-planner-list h2{
+        font-weight: bold;
+        font-size: large;
     }
-    
+    .day-planner-list ul{
+        margin: 1.5vh 1vw 0 4vw;
+    }
     .clear-btn{
         padding: 1vh 2vw;
         border-radius: 15px;

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css';
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import App from './App';
-import FlightAPI from './FlightAPI';
 import DayPlanner from './components/dayplanner/Dayplanner';
+import FlightAPI from './components/FlightAPI';
 import ClimatePage from './pages/ClimatePage';
 
 ReactDOM.render(

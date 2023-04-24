@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
 import './App.css';
-import GMaps from './Map';
-import logo from './mlh-prep.png';
-import WeatherOverlay from './components/WeatherOverlay';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import AutoCity from './components/AutoCity';
-import Forecast from './Forecast';
+import WeatherOverlay from './components/WeatherOverlay';
+import Forecast from './components/forecast/Forecast';
 import Essentials from './components/essentials';
+import GMaps from './components/Map';
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('Mumbai');
   const [results, setResults] = useState(null);
-  const [cood, setCood] = useState({ lat: 40.7127753, lng: -74.0059728 });
-  const [containerStyle, setContainerStyle] = useState({
-    backgroundImage: `url(/assets/weather-icons/Clouds.svg)`,
-  });
+  const [containerStyle, setContainerStyle] = useState({});
+  const [cood, setCood] = useState({ lat: 19.076, lng: 72.8777 });
 
   const handleSelect = (suggestion) => {
     setCity(suggestion.name);
@@ -56,7 +54,7 @@ function App() {
               setIsLoaded(true);
               localStorage.setItem('weatherCondition',result)
               setResults(result);
-              setContainerStyle(getContainerStyle(results.weather[0].main));
+              setContainerStyle(getContainerStyle(result.weather[0].main));
             }
           },
           (error) => {
@@ -71,35 +69,72 @@ function App() {
     return <div>Error: {error.message}</div>;
   } else {
     return (
-      <>
-        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-        <div className="container">
-          <div className="header">
-            <h2>
-              Enter a city below{' '}
-              <span role="img" aria-label="emoji">
-                👇
-              </span>
-            </h2>
+      <div className="weather__container">
+        {/* Column 1 */}
+        <div className="weather__col--1">
+          <div className="weather__search">
+            <p className="weather__search--prompt">Enter a city</p>
             <AutoCity onSelect={handleSelect} />
           </div>
           <GMaps cood={cood} setCood={setCood} />
-          <WeatherOverlay style={containerStyle} />
-          <div className="results">
-            {!isLoaded && <h2>Loading...</h2>}
-            {console.log(results)}
-            {isLoaded && results && (
-            <>
-              <h3>{results.weather[0].main}</h3>
-              <p>Feels like {results.main.feels_like}°C</p>
-              <i><p>{results.name}, {results.sys.country}</p></i>
-              <Essentials today={results?.weather[0].main}/>
-              <Forecast city={city} />
-              
-            </>)}
+          <div className="weather__placeholder weather__placeholder--2">
+            Playlist
+            <br />
+            Coming Soon
           </div>
         </div>
-      </>
+
+        {/* Column 2 */}
+        <div>
+          {!isLoaded && <h2>Loading...</h2>}
+          {isLoaded && results && (
+            <div className="weather__col--2">
+              <div className="results__main">
+                <WeatherOverlay style={containerStyle} />
+                <div>
+                  <h2>{results.weather[0].main}</h2>
+                  <p>Feels like {results.main.feels_like}°C</p>
+                  <p>
+                    {results.name}, {results.sys.country}
+                  </p>
+                </div>
+              </div>
+
+              <div className="weather__essentials">
+                <Essentials today={results?.weather[0].main} />
+              </div>
+
+              <div>
+                <Forecast city={city} />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Column 3 */}
+        <div className="weather__col--3">
+          <div className="weather__cta weather__cta--day">
+            <p>Plan your day with fun activities!</p>
+            <Link to="/Dayplanner">
+              <button>Day Planner</button>
+            </Link>
+          </div>
+
+          <div className="weather__cta weather__cta--trip">
+            <p>Start planning your next trip with our flight finder!</p>
+            <Link to="/trip-planner">
+              <button>Trip Planner</button>
+            </Link>
+          </div>
+
+          <div className="weather__cta weather__cta--climate">
+            <p>Learn how climate change can affect your travels.</p>
+            <Link to="/climate-change">
+              <button>Climate Change</button>
+            </Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }
