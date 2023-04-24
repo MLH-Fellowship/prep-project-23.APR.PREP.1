@@ -1,0 +1,90 @@
+.climate {
+  margin: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+
+.climate__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  padding: 3.5rem 6rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+/* Introduction */
+.climate__intro {
+  margin-bottom: 2rem;
+  text-align: left;
+  font-size: 18px;
+}
+
+.climate__title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.climate p:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+/* Climate Charts */
+.climate__charts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #333;
+  margin-bottom: 3rem;
+}
+
+.climate__charts h2 {
+  margin-bottom: 0.5rem;
+}
+
+.climate__search {
+  max-width: 16rem;
+  margin-bottom: 3rem;
+}
+
+.climate__recharts--1 {
+  margin-bottom: 3rem;
+}
+
+/* Travel Tips */
+.climate__tips h2 {
+  margin-bottom: 2rem;
+}
+
+.climate__tips h3 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+.climate .card__container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.climate .card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 1.5rem;
+  max-width: 300px;
+}
+
+.climate .card p {
+  font-size: 1em;
+  line-height: 1.5em;
+  color: black;
+}

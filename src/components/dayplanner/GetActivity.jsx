@@ -36,7 +36,8 @@ function GetActivity(props) {
 
     setLoading(false);
     const paragraph = response.data.choices[0].text
-    let sentences = paragraph.split(/(\d+. )/);
+    // let sentences = paragraph.split(/(\d+. )/);
+    let sentences = paragraph.split(/(?<![a-zA-Z\d])\d+. /);
     sentences = sentences.filter(element => isNaN(element));
     console.log(sentences);
     setResult(sentences);

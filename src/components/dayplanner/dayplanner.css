@@ -1,7 +1,8 @@
 .dayplanner-container {
     display: block;
     margin-bottom: 2rem;
-    margin-left: 1vw; 
+    margin-left: 0vw;
+    margin-top: 1rem;
   
   }
 hr{
@@ -26,11 +27,12 @@ hr{
     padding: 0.2vh;
     padding-bottom: 1vh;
     border: 1px solid white;
-    margin-top: 2.5vh;
-
-
+    margin-top: 1rem;
+    min-height: 20%;
   }
-  
+input{
+  margin-top: 1vh;
+}
 .dayplanner-results h3, p{
   margin-block: 1.5vh;
 
@@ -85,6 +87,9 @@ h2{
 
 
   @media only screen and (max-width: 680px) {
+    .dayplanner-container{
+      margin-left: 1.5rem;
+    }
     .dayplanner-weather {
       transform: translateX(0);
       width: 85%;

@@ -13,6 +13,7 @@ function Todolist({ todoItem, addTodos, setTodoItem}) {
   return (
     <div className="day-planner-list">
       <h2>Todo List</h2>
+      <p>Click the Activities to add them to the list</p>
       <hr></hr>
       <ul>
         {todoItem.map((todo, index) => (

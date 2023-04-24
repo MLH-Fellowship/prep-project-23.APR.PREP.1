@@ -3,7 +3,7 @@
 }
 .activity-container {
 
-  width: 90%;
+  width: 85%;
   margin: 1rem 0 ;
 }
 
@@ -40,6 +40,7 @@
     align-items: center;
     width: 85%;
     margin-left: 6rem;
+    margin-bottom: 1vh;
 }
 .refresh-btn {
     background-color: rgb(209, 186, 255);
@@ -50,24 +51,32 @@
     border-radius: 30px;
     border: none;
     font-size: medium;
-    transform: translateX(12vw);
+    transform: translateX(7vw);
     
 }
 .day-planner-list{
     background-color: rgb(255, 255, 195);
-    height:inherit ;
     color: black;
-    margin-top: 20rem;
-    padding: 0 1vw;
+    margin-top: 17rem;
+    padding: 2vh 1vw 0 1vw;
     border-radius: 14px;
     text-align: left;
     width: 30%;
-    margin-right: 2rem;
-    position:static;
+    margin-right: 2.5rem;
+    position:relative;
     
+}
+.day-planner-list p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
 }
 .day-planner-list hr{
     display: block;
+    margin-top: 1vh;
+}
+.day-planner-list ul{
+    margin: 1.5vh 1vw 0 2vw;
 }
 .day-planner-list li{
     padding-bottom: 1vh;
@@ -79,7 +88,7 @@
     background-color: #133667;
     border: none;
     color: white;
-    padding: 2vh 2vw;
+    padding: 1.5vh 1vw;
     cursor: pointer;
     border-radius: 30px;
     font-size: medium;
@@ -162,7 +171,7 @@
     
     .day-planner-list{
         border-radius: 10px;
-        width: 85%;
+        width: 80%;
         margin: 0 2rem;
         position:relative;
         padding: 1vh 2vw;
