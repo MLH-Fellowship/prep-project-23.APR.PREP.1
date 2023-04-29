@@ -1,0 +1,202 @@
+.day-planner{
+    display: flex;
+}
+.activity-container {
+
+  width: 75%;
+  margin: 1rem 0 ;
+}
+
+.activities {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.activityCard{
+    padding: 1.2rem;
+    background-color:rgb(24, 24, 24);
+    border-radius: 14px;
+    color: #e6e6e6;
+    margin: 1rem 0 0.5rem 2.5rem ;
+    width: 35%;
+    font-size: larger;
+    text-align: center;
+    transition:0.5s;
+    cursor: pointer;
+}
+.activityCard:hover{
+    transform: scale(1.1);
+    box-shadow: -0.4em 0 0 black ;
+    background-color:rgb(209, 186, 255);
+    color: black;
+    transition: 0.2s;
+}
+.heading{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 85%;
+    margin-left: 6rem;
+    margin-bottom: 1vh;
+}
+.refresh-btn {
+    background-color: rgb(209, 186, 255);
+    color: black;
+    margin:0;
+    padding: 1.5vh 1.5vw;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    font-size: medium;
+    transform: translateX(7vw);
+    
+}
+.day-planner-list{
+    background-color: rgb(255, 255, 195);
+    color: black;
+    margin-top: 17.6rem;
+    padding: 2vh 1vw 0 1vw;
+    border-radius: 14px;
+    text-align: left;
+    width: 25%;
+    margin-right: 4rem;
+    position:absolute;
+    transform: translateX(70.7vw);
+    
+}
+.day-planner-list p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+}
+.day-planner-list hr{
+    display: block;
+    margin-top: 1vh;
+}
+.day-planner-list ul{
+    margin: 1.5vh 1vw 0 2vw;
+}
+.day-planner-list li{
+    padding-bottom: 1vh;
+    margin: 0;
+}
+
+.clear-btn{
+    margin-bottom: 1vh;
+    background-color: #133667;
+    border: none;
+    color: white;
+    padding: 1.5vh 1vw;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: medium;
+
+}
+@media only screen and (max-width:950px) {
+
+    .activity-container {
+      width: 75%;
+    }
+    
+    .activities {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .activityCard{
+        padding: 1rem;
+        margin: 1rem 0 0.5rem 1.8rem ;
+        font-size: 1rem;
+    }
+   
+    .heading{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        width: 83%;
+        margin-left: 1rem;
+
+    }
+    .refresh-btn {
+        margin-right: 4vw;
+        justify-content: flex-end;
+        
+    }
+    .day-planner-list{      
+        margin-top: 16rem;
+        margin-right: 3rem;
+        /* margin-right: 4rem; */
+        position:absolute;
+        transform: translateX(70.5vw);
+        
+    }
+    .day-planner-list hr{
+        display: block;
+    }
+    .day-planner-list h2{
+        font-weight: bold;
+    }
+    .day-planner-list p{
+        font-size:x-small;
+    }
+    
+    .clear-btn{
+        padding: 1.5vh 2vw;
+    }
+}
+@media only screen and (max-width:680px) {
+    .day-planner{
+        display: block;
+    }
+    .activity-container {
+      width: 85%;
+      margin: 1rem 4vw ;
+    }
+    
+    .activities {
+        display: block;
+    }
+    
+    .activityCard{
+        padding: 1rem;
+        margin: 1rem 0 0rem 1rem ;
+        width: 90%;
+    }
+    .activityCard:hover{
+        transform: scale(1.05);
+    }
+
+    .refresh-btn {
+        padding: 1vh 2vw;
+        border-radius: 30px;
+        justify-content: flex-end;        
+    }
+    
+    .day-planner-list{
+        border-radius: 10px;
+        width: 80%;
+        margin: 1.5rem 2rem;
+        position:relative;
+        transform: translateX(0vw);
+        padding: 1vh 0.5rem;
+    }
+    .day-planner-list h2{
+        font-weight: bold;
+        font-size: large;
+    }
+    .day-planner-list ul{
+        margin: 1.5vh 1vw 0 4vw;
+    }
+    .clear-btn{
+        padding: 1vh 2vw;
+        border-radius: 15px;
+        margin-bottom: 0.5vh;
+    } 
+    
+}

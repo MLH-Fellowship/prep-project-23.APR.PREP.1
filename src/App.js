@@ -52,6 +52,7 @@ function App() {
               setIsLoaded(false);
             } else {
               setIsLoaded(true);
+              localStorage.setItem('weatherCondition',result)
               setResults(result);
               setContainerStyle(getContainerStyle(result.weather[0].main));
             }
@@ -114,8 +115,8 @@ function App() {
         <div className="weather__col--3">
           <div className="weather__cta weather__cta--day">
             <p>Plan your day with fun activities!</p>
-            <Link to="/">
-              <button>Coming Soon</button>
+            <Link to="/Dayplanner">
+              <button>Day Planner</button>
             </Link>
           </div>
 

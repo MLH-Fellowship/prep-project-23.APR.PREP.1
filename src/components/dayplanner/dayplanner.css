@@ -1,0 +1,136 @@
+.dayplanner-container {
+    display: block;
+    margin-bottom: 2rem;
+    margin-left: 0vw;
+    margin-top: 1rem;
+  
+  }
+hr{
+  display: none;
+}
+ .dayplanner-weather {
+  align-items: center;
+  margin: 0 3rem;
+  margin-right: 4rem;
+  border-radius: 8px;
+  color: white;
+  padding: 1vh;
+  position: absolute;
+  transform: translateX(67vw);
+  margin-top: 1rem;
+  width: 25%;
+}
+  .dayplanner-results {
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    padding: 0.2vh;
+    padding-bottom: 1vh;
+    border: 1px solid white;
+    margin-top: 1rem;
+    min-height: 20%;
+  }
+input{
+  margin-top: 1vh;
+}
+.dayplanner-results h3, p{
+  margin-block: 1.5vh;
+
+}
+hr{
+    border: 1px solid rgb(24, 24, 24);
+}
+
+@media only screen and ( max-width: 950px) {
+  .dayplanner-container {
+    display: block;
+    margin-bottom: 2rem;
+    margin-left: 0vw; 
+  }
+hr{
+  display: none;
+}
+ .dayplanner-weather {
+  /* margin: 0 2rem; */
+  margin: 0;
+  transform: translateX(69vw);
+  margin-top: 1vh;
+  width: 28%;
+}
+  .dayplanner-results {
+    padding: 0.2vh;
+    padding-bottom: 1vh;
+    margin-top: 1rem;
+  }
+  
+.dayplanner-results h3, p{
+  margin-block: 0.5vh;
+
+}
+hr{
+    border: 1px solid rgb(24, 24, 24);
+}
+input{
+  width: 90%;
+  margin-top: 1vh;
+}
+
+h1{
+  font-size:1.45rem;
+  padding-left:5vw;
+}
+h2{
+  font-size: large;
+  font-weight: 500;
+}
+}
+
+
+  @media only screen and (max-width: 680px) {
+    .dayplanner-container{
+      margin-left: 1.5rem;
+    }
+    .dayplanner-weather {
+      transform: translateX(0);
+      width: 85%;
+      margin: 0 1.4rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dayplanner-results {
+      border-radius: 8px;
+      padding: 0.2vh;
+      border: 1px solid white;
+      margin-top: 1.5vh;
+      width: 45%;
+      margin-left: 3vw;
+    }
+    .dayplanner-container input{
+      width: 100%;
+      margin-top: 2vh;
+    }
+    .dayplanner-container hr{
+      display: block;
+      width: 90%;
+      border: 0.1vh solid rgba(255, 255, 255, 0.145);
+    }
+    .dayplanner-container h1{
+      font-size:1.3rem;
+      padding-left:5vw;
+    }
+    .dayplanner-containerh2{
+      font-size: large;
+      font-weight: 500;
+    }
+    .dayplanner-results h3{
+      font-size: medium;
+      margin-block: 0.5vh;
+    }
+    .dayplanner-results p{
+      font-size: small;
+      margin-block: 0.5vh;
+
+    }
+  }

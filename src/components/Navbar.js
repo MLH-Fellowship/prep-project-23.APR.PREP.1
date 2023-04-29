@@ -32,6 +32,11 @@ function Navbar() {
             </Link>
           </li> */}
           <li className="nav__item">
+            <Link to="/Dayplanner" onClick={toggleMenu}>
+              Day Planner
+            </Link>
+          </li>
+          <li className="nav__item">
             <Link to="/trip-planner" onClick={toggleMenu}>
               Trip Planner
             </Link>
