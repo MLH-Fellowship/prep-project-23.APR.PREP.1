@@ -12,9 +12,6 @@ const Forecast = ({ city }) => {
   const [forecastView, setForecastView] = useState(null);
   const todayDate = new Date(Date.now());
 
-  //  const basename = process.env.REACT_APP_URL;
-  //  const uri = basename + '/api/proxy?api=forecast&q=' + city +
-  //              '&units=metric';
   const uri =
     'https://api.openweathermap.org/data/2.5/forecast?&q=' +
     city +
@@ -76,16 +73,15 @@ const Forecast = ({ city }) => {
    and return an array of arrays containing that same information
    grouped by day */
 function regroupForecastResults(forecastResultsArr) {
-  const firstDay = forecastResultsArr[0].date.getDate();
-  const regroupedByDay = [];
-
-  for (let i = firstDay; i - firstDay < 5; i++) {
-    const dayForecast = forecastResultsArr.filter(
-      (d) => d.date.getDate() === i
-    );
-    regroupedByDay.push(dayForecast);
-  }
-
+  const forecastMap = new Map();
+  forecastResultsArr.forEach((forecast) => {
+    const dateKey = forecast.date.toISOString().substring(0, 10); // Use ISO string to get date without time
+    if (!forecastMap.has(dateKey)) {
+      forecastMap.set(dateKey, []);
+    }
+    forecastMap.get(dateKey).push(forecast);
+  });
+  const regroupedByDay = Array.from(forecastMap.values());
   return regroupedByDay;
 }
 
@@ -113,6 +109,7 @@ function makeDay(dayForecast) {
     hours: hours,
     temp: { min: minTemp, max: maxTemp },
   };
+
   return day;
 }
 
